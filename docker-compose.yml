@@ -1,0 +1,30 @@
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub:3.141.59-dubnium
+    container_name: selenium-hub
+    ports:
+    - "4444:4444"
+  chrome:
+    image: selenium/node-chrome:3.141.59-dubnium
+    volumes:
+    - /dev/shm:/dev/shm
+    - /tmp/healthdata:/home/seluser/Downloads
+    depends_on:
+    - selenium-hub
+    environment:
+    - SCREEN_WIDTH=1920
+    - SCREEN_HEIGHT=1080
+    - SCREEN_DEPTH=24
+    - HUB_HOST=selenium-hub
+    - HUB_PORT=4444
+  firefox:
+    image: selenium/node-firefox:3.141.59-dubnium
+    volumes:
+    - /dev/shm:/dev/shm
+    - /tmp/healthdata:/home/seluser/Downloads
+    depends_on:
+    - selenium-hub
+    environment:
+    - HUB_HOST=selenium-hub
+    - HUB_PORT=4444
