@@ -12,7 +12,7 @@ public class PropertiesReader {
     /** Methods */
     static {
         try {
-            InputStream stream = PropertiesReader.class.getResourceAsStream("/properties/project.properties");
+            InputStream stream = PropertiesReader.class.getResourceAsStream("/project.properties");
             PROPERTIES.load(stream);
             stream.close();
         } catch (Exception e) {
