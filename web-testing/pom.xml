@@ -25,4 +25,52 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>selenium-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M3</version>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <parallel>both</parallel>
+                            <threadCount>4</threadCount>
+                            <perCoreThreadCount>true</perCoreThreadCount>
+                            <includes>
+                                <includes>**/TestExecutor.java</includes>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>net.masterthought</groupId>
+                        <artifactId>maven-cucumber-reporting</artifactId>
+                        <version>4.7.0</version>
+                        <executions>
+                            <execution>
+                                <id>execution</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <projectName>Refleqt Test</projectName>
+                                    <outputDirectory>${project.build.directory}/</outputDirectory>
+                                    <cucumberOutput>${project.build.directory}/cucumber-report/
+                                    </cucumberOutput>
+                                    <jsonFiles>
+                                        <param>**/*.json</param>
+                                    </jsonFiles>
+                                    <parallelTesting>true</parallelTesting>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

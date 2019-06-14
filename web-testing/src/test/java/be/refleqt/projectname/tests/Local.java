@@ -1,6 +1,7 @@
 package be.refleqt.projectname.tests;
 
 import be.refleqt.library.selenium.DriverProvider;
+import be.refleqt.library.selenium.environments.DockerProvider;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
@@ -19,11 +20,11 @@ public class Local extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public static void setupDocker() {
-        DriverProvider.startDocker();
+        DockerProvider.getInstance().setupStandAloneChrome();
     }
 
     @AfterSuite
     public static void tearDownDocker() {
-        DriverProvider.stopDocker();
+        DockerProvider.getInstance().teardownStandAlone();
     }
 }

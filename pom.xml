@@ -17,7 +17,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.surefire.version>2.20.1</maven.surefire.version>
+        <maven.surefire.version>3.0.0-M3</maven.surefire.version>
         <maven.dependency.version>3.0.0</maven.dependency.version>
         <maven.compiler.version>3.6.1</maven.compiler.version>
         <aspectjweaver.version>1.8.7</aspectjweaver.version>
@@ -25,7 +25,7 @@
         <compliance.level>1.8</compliance.level>
 
         <!--CUCUMBER DEPENDENCIES-->
-        <cucumber.version>3.0.2</cucumber.version>
+        <cucumber.version>4.3.1</cucumber.version>
 
         <!--SELENIUM VERSION-->
         <selenium.version>3.14.0</selenium.version>
@@ -72,7 +72,7 @@
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
+            <artifactId>cucumber-java8</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
         <dependency>
