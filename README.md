@@ -9,7 +9,10 @@
 Can be used with all environments, no parallisation. Fixed @wip tag
 
 ####TestExecutor
-Can be used with all environments, with parallisation. tag optional, default value = @wip
+Can be used with all environments, with parallisation. 
+
+cucumberTag optional, default value = @wip
+threads optional, default value = 4
 
 ####JenkinsExecutor
 Can be used with all environments, no parallisation. expects property cucumberTags to be set.
