@@ -59,12 +59,9 @@
                                 <configuration>
                                     <projectName>Refleqt Test</projectName>
                                     <outputDirectory>${project.build.directory}/</outputDirectory>
-                                    <cucumberOutput>${project.build.directory}/cucumber-report/
-                                    </cucumberOutput>
                                     <jsonFiles>
                                         <param>**/*.json</param>
                                     </jsonFiles>
-                                    <parallelTesting>true</parallelTesting>
                                 </configuration>
                             </execution>
                         </executions>
