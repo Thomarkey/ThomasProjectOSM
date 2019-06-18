@@ -1,5 +1,6 @@
 package be.refleqt.projectname.pages;
 
+import be.refleqt.projectname.support.World;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -28,5 +29,11 @@ public class HomePage extends AbstractPage {
     public void validateFirstSearchItem(String value) {
         waitForElementToBeVisible(firstSearchResultLbl);
         assertThat(firstSearchResultLbl.getText()).isEqualToIgnoringCase(value);
+    }
+
+    public HomePage getFirstSearchItem(World world) {
+        waitForElementToBeVisible(firstSearchResultLbl);
+        world.result = firstSearchResultLbl.getText();
+        return this;
     }
 }

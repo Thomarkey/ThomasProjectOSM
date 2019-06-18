@@ -1,6 +1,6 @@
 package be.refleqt.projectname.tests;
 
-import be.refleqt.library.selenium.environments.DockerProvider;
+import be.refleqt.library.selenium.driver.setup.DockerProvider;
 import org.testng.annotations.*;
 
 public class TestExecutor {
