@@ -29,12 +29,22 @@
 
         <!--SELENIUM VERSION-->
         <selenium.version>3.14.0</selenium.version>
-        <refleqt.selenium.version>1.0.0</refleqt.selenium.version>
+        <refleqt.selenium.version>1.0.0-SNAPSHOT</refleqt.selenium.version>
 
         <!--ASSERTION DEPENDENCIES-->
         <assertj.version>3.8.0</assertj.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>refleqt</id>
+            <url>http://df.refleqt.be:8081/artifactory/refleqt</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!--ASSERTION DEPENDENCIES-->
