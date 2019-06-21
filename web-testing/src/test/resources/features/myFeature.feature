@@ -5,6 +5,8 @@ Feature: This is my feature
     Given I go to https://www.google.be
     When  I search for <search>
     Then  The first result is <result>
+    And   I searched for <search>
+    And   I found <result>
 
     Examples:
       | search   | result                                                 |

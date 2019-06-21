@@ -1,7 +1,6 @@
 package be.refleqt.projectname.tests;
 
-import be.refleqt.library.selenium.DriverProvider;
-import be.refleqt.library.selenium.environments.DockerProvider;
+import be.refleqt.library.selenium.driver.setup.DockerProvider;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
