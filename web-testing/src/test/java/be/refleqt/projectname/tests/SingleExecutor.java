@@ -14,16 +14,17 @@ import org.testng.annotations.BeforeSuite;
         strict = true,
         snippets = SnippetType.CAMELCASE
 )
-public class JenkinsExecutor extends AbstractTestNGCucumberTests {
+public class SingleExecutor extends AbstractTestNGCucumberTests {
 
+    /**
+     * Docker is only setup if System property "env" is a docker option
+     */
     @BeforeSuite
     public static void setupDocker() {
-        if (System.getProperty("cucumberTags") != null) {
-            System.out.println("Running the tag: " + System.getProperty("cucumberTags"));
-            System.setProperty("cucumber.options", "--tags @" + System.getProperty("cucumberTags"));
-        }
+        System.out.println("Running the tag: " + System.getProperty("cucumberTag"));
+        System.setProperty("cucumber.options", "--tags @" + System.getProperty("cucumberTag", "wip"));
 
-        DockerProvider.getInstance().setupStandAloneChrome();
+        DockerProvider.getInstance().setupStandAlone();
     }
 
     @AfterSuite

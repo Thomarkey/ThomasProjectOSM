@@ -7,7 +7,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class SearchTestSteps {
 
-    World world;
+    private World world;
 
     public SearchTestSteps(World world) {
         this.world = world;
