@@ -2,6 +2,16 @@
 
 ###Only works with Java 1.8!
 
+#Purpose of this project
+The purpose of this project is to provide a base that every emloyee can use when starting a
+new assignment. This will reduce initial setup time for that assignment. Through collaboration
+of all colleagues this project will grow over time setting up a standard for Refleqt to use
+in all future assignments.
+
+If you feel something can be improved, please do make a Pull Request!
+
+At 24/06/2019 only selenium web-testing is supplied in the base.
+
 #How to use web-testing
 
 ## Executors
