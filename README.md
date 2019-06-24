@@ -16,7 +16,7 @@ At 24/06/2019 only selenium web-testing is supplied in the base.
 
 ## Executors
 ####SingleExecutor
-Can be used with all environments, no parallisation. Fixed @wip tag
+Can be used with all environments, no parallisation.
 
 #####System property:
 cucumberTag optional, default value = @wip (work in progress)
