@@ -19,15 +19,15 @@ At 24/06/2019 only selenium web-testing is supplied in the base.
 Can be used with all environments, no parallisation.
 
 ###### System property:
-`-DcucumberTag=tag` optional, default value = @wip (work in progress)
+`-DcucumberTag=tag` optional, default value is **wip** (@wip -> work in progress)
 
 ####MultiExecutor
 Can be used with all environments, with parallisation. 
 
 ###### System property:
-`-DcucumberTag=tag` optional, default value = @wip (work in progress)
+`-DcucumberTag=tag` optional, default value is **wip** (@wip -> work in progress)
 
-`-Dthreads=4` optional, default value = 4 
+`-Dthreads=4` optional, default value is **4** 
 
 #### @BeforeSuite / @AfterSuite
 In these TestNG Tags docker will be setup. The version used in docker is defined by 
@@ -71,13 +71,13 @@ e.g. `-Denv=local` --> default value is **local**
     * If you'd like to overwrite the remote webdriver url
   * `-Dversion= `
     * Version of browser that the test will be run on
-    * Defaults to blank version
+    * Defaults to **blank version**
   * `-Dplatform= `
     * platform to use e.g. Windows/Mac
-    * Default to "ANY"
+    * Default to "**ANY**"
   * `-Dresolution= `
     * resolution of the browser
-    * Defaults to 1920*1080
+    * Defaults to **1920*1080**
   
 ##Browsers
 ##### Property to set "browser".
