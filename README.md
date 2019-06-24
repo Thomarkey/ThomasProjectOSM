@@ -18,23 +18,24 @@ At 24/06/2019 only selenium web-testing is supplied in the base.
 ####SingleExecutor
 Can be used with all environments, no parallisation.
 
-#####System property:
-cucumberTag optional, default value = @wip (work in progress)
+###### System property:
+`-DcucumberTag=tag` optional, default value = @wip (work in progress)
 
 ####MultiExecutor
 Can be used with all environments, with parallisation. 
 
-#####System property:
-cucumberTag optional, default value = @wip (work in progress)
-threads optional, default value = 4 
+###### System property:
+`-DcucumberTag=tag` optional, default value = @wip (work in progress)
 
-####@BeforeSuite / @AfterSuite
+`-Dthreads=4` optional, default value = 4 
+
+#### @BeforeSuite / @AfterSuite
 In these TestNG Tags docker will be setup. The version used in docker is defined by 
 the maintainer of the library. If you'd like to overwrite the used tag follow these steps.
 It is not recommended to use "latest" since updates in this docker container could break
 your test suite.
 
-#####Changing the docker tag that is used:
+###### Changing the docker tag that is used:
 
  * go to `https://hub.docker.com/r/selenium/standalone-firefox/tags`
  * Select a tag (These are shared between all selenium official containers)
@@ -43,10 +44,11 @@ your test suite.
 
 
 ##Environment
-####Property to set "env".
-e.g. -Denv=local --> default value is local
+##### Property to set "env".
+e.g. `-Denv=local` --> default value is **local**
 
-####Options
+###### Options
+
  * local
     * Start a local webDriver (e.g. chromedriver) to run the tests on.
  * docker / docker-grid / grid
@@ -56,29 +58,32 @@ e.g. -Denv=local --> default value is local
  * saucelabs
     * Start a remote webDriver that connects to SauceLabs
  
-#### With env = browserstrack/saucelabs required parameters:
-  * -Dusername=
+###### With env = browserstrack/saucelabs required parameters:
+
+  * `-Dusername= `
     * This username can be found on the website of the cloud provider
-  * -DaccessKey= 
+  * `-DaccessKey= ` 
       * This access key or API key can be found on the website of the cloud provider
-#### With env = browserstrack/saucelabs optional parameters:
-  * -Durl=
+      
+###### With env = browserstrack/saucelabs optional parameters:
+
+  * `-Durl= `
     * If you'd like to overwrite the remote webdriver url
-  * -Dversion=
+  * `-Dversion= `
     * Version of browser that the test will be run on
     * Defaults to blank version
-  * -Dplatform= 
+  * `-Dplatform= `
     * platform to use e.g. Windows/Mac
     * Default to "ANY"
-  * -Dresolution=
+  * `-Dresolution= `
     * resolution of the browser
     * Defaults to 1920*1080
   
 ##Browsers
-####Property to set "browser".
-e.g. -Dbrowser=chrome -> Default value is chrome
+##### Property to set "browser".
+e.g. `-Dbrowser=chrome` -> Default value is **chrome**
 
-####Options
+###### Options
 * Chrome
 * Firefox / ff
 * IE / Internet Explorer
