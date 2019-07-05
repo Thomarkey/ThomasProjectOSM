@@ -27,7 +27,7 @@
 
     <profiles>
         <profile>
-            <id>selenium-tests</id>
+            <id>genericSuite</id>
             <build>
                 <plugins>
                     <plugin>
@@ -37,12 +37,8 @@
                         <configuration>
                             <skipTests>false</skipTests>
                             <includes>
-                                <includes>**/TestExecutor.java</includes>
+                                <includes>**/MultiExecutor.java</includes>
                             </includes>
-                            <properties>
-                                <threads>4</threads>
-                                <cucumberTag>wip</cucumberTag>
-                            </properties>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -70,5 +66,6 @@
             </build>
         </profile>
     </profiles>
+
 
 </project>

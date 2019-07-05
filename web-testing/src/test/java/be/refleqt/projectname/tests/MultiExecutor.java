@@ -9,9 +9,12 @@ public class MultiExecutor {
 
     @Test(description = "Runs Cucumber Feature")
     public void executeTest() {
-        String arg = "src/test/resources/features/ --threads " + System.getProperty("threads", "4") + " --plugin json:target/cucumber-report/test.json " +
+        String tag = System.getProperty("cucumberTag", "wip");
+        System.out.println("Running tag: " + tag);
+        String arg = "src/test/resources/features/ --threads " + System.getProperty("threads", "4") +
+                " --plugin json:target/cucumber-report/test.json " +
                 "--plugin html:target/cucumber-report/html " +
-                "-t @" + System.getProperty("cucumberTag", "wip") + " --strict --glue be.refleqt.projectname.steps";
+                "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");
 
         cucumber.api.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
@@ -22,7 +25,7 @@ public class MultiExecutor {
      */
     @BeforeSuite
     public static void setupDocker() {
-        DockerProvider.getInstance().setupDockerGrid(4);
+        DockerProvider.getInstance().setupDockerGrid(System.getProperty("threads", "4"));
     }
 
     @AfterSuite

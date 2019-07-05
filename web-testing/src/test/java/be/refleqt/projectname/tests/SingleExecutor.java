@@ -21,7 +21,7 @@ public class SingleExecutor extends AbstractTestNGCucumberTests {
      */
     @BeforeSuite
     public static void setupDocker() {
-        System.out.println("Running the tag: " + System.getProperty("cucumberTag"));
+        System.out.println("Running the tag: " + System.getProperty("cucumberTag", "wip"));
         System.setProperty("cucumber.options", "--tags @" + System.getProperty("cucumberTag", "wip"));
 
         DockerProvider.getInstance().setupStandAlone();
