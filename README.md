@@ -14,7 +14,7 @@ At 05/07/2019 only selenium web-testing and API-Testing is supplied in the base.
 
 #How to use api-testing
 
-Refer to [Executors](##Executors) for explanation of the executors.
+Refer to [Executors](#executors) for explanation of the executors.
 
 ## api-support module
 The purpose of this module is to generate the swagger-codegen DTO. It 
