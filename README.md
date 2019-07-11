@@ -89,3 +89,17 @@ e.g. `-Dbrowser=chrome` -> Default value is **chrome**
 * IE / Internet Explorer
 * MicrosoftEdge / Edge
 * Safari
+
+##Global Properties
+##### Property to set "takeScreenshots".
+e.g. `-DtakeScreenshots=true` 
+   
+-> Default value:
+        
+* False if `env` is set to browserstack/saucelabs
+* True if `env` is set to local/docker
+
+###### Options
+* True
+* False
+* All other values are seens as False.
