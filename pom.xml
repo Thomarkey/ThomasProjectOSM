@@ -29,7 +29,7 @@
 
         <!--SELENIUM VERSION-->
         <selenium.version>3.14.0</selenium.version>
-        <refleqt.selenium.version>1.0.0-SNAPSHOT</refleqt.selenium.version>
+        <refleqt.selenium.version>1.0.1-SNAPSHOT</refleqt.selenium.version>
 
         <!--ASSERTION DEPENDENCIES-->
         <assertj.version>3.8.0</assertj.version>

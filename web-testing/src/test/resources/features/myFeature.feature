@@ -1,4 +1,4 @@
-@wip
+
 Feature: This is my feature
 
   Scenario Outline: Go to google - search for <search>
@@ -14,3 +14,9 @@ Feature: This is my feature
       | cloudway | Driving digital agility in the cloud \| Cloudway       |
       | xplore   | Xplore Group \| Home \| Connect, create and make sense |
       | xti      | XTi: Welkom                                            |
+
+@wip
+  Scenario: E-commerce demo
+    Given I go to http://automationpractice.com/index.php
+    When  I add the first bestseller item to my cart
+    Then  I successfully added something to my cart

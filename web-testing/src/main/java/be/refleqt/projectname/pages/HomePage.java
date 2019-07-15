@@ -1,38 +1,38 @@
 package be.refleqt.projectname.pages;
 
+import be.refleqt.library.selenium.driver.element.RefleqtWebElement;
 import be.refleqt.projectname.support.World;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class HomePage extends AbstractPage {
 
     @FindBy(name = "q")
-    private WebElement searchTxtFld;
+    private RefleqtWebElement searchTxtFld;
 
     @FindBy(name = "btnK")
-    private WebElement searchBtn;
+    private RefleqtWebElement searchBtn;
 
     @FindBy(css = "#rso > div > div > div:nth-child(1) > div > div > div.r > a:nth-child(1) > h3")
-    private WebElement firstSearchResultLbl;
+    private RefleqtWebElement firstSearchResultLbl;
 
     public HomePage enterSearch(String value) {
-        sendKeysToElement(searchTxtFld, value);
+        searchTxtFld.sendKeys(value);
+        searchTxtFld.clear();
+        searchTxtFld.sendKeys(value);
         return this;
     }
 
     public void clickSearch() {
-        clickOnElement(searchBtn);
+        searchBtn.click();
     }
 
     public void validateFirstSearchItem(String value) {
-        waitForElementToBeVisible(firstSearchResultLbl);
-        assertThat(firstSearchResultLbl.getText()).isEqualToIgnoringCase(value);
+        firstSearchResultLbl.validateTextToMatch(value);
     }
 
     public HomePage getFirstSearchItem(World world) {
-        waitForElementToBeVisible(firstSearchResultLbl);
+        firstSearchResultLbl.waitForElementToBeVisible();
         world.result = firstSearchResultLbl.getText();
         return this;
     }
