@@ -17,7 +17,6 @@ public class HomePage extends AbstractPage {
     private RefleqtWebElement firstSearchResultLbl;
 
     public HomePage enterSearch(String value) {
-        searchTxtFld.sendKeys(value);
         searchTxtFld.clear();
         searchTxtFld.sendKeys(value);
         return this;
