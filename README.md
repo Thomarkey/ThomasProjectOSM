@@ -103,3 +103,14 @@ e.g. `-DtakeScreenshots=true`
 * True
 * False
 * All other values are seens as False.
+
+##### Property to set "decoratorTimeout".
+e.g. `-DdecoratorTimeout=10` 
+   
+-> Default value: "1"
+
+This property sets the minimum time the decorator will look for elements.
+The value is done x6 for the maximum wait time.
+
+###### Options
+* Long values
