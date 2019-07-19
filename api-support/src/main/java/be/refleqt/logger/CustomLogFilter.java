@@ -4,6 +4,7 @@ import io.cucumber.datatable.dependency.com.fasterxml.jackson.core.JsonProcessin
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.filter.Filter;
 import io.restassured.filter.FilterContext;
+import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import io.restassured.specification.FilterableRequestSpecification;
 import io.restassured.specification.FilterableResponseSpecification;
@@ -24,17 +25,7 @@ public class CustomLogFilter implements Filter {
         requestBuilder.append(": ");
         requestBuilder.append(requestSpec.getURI());
         requestBuilder.append("\n");
-        requestBuilder.append("\n");
-
-        requestBuilder.append("HEADERS:");
-        requestBuilder.append("\n");
-        requestSpec.getHeaders().forEach(h -> {
-            requestBuilder.append("\t");
-            requestBuilder.append(h.getName());
-            requestBuilder.append(": ");
-            requestBuilder.append(h.getValue());
-            requestBuilder.append("\n");
-        });
+        getHeaders(requestBuilder, requestSpec.getHeaders());
 
         if (requestSpec.getBody() != null) {
             try {
@@ -73,22 +64,27 @@ public class CustomLogFilter implements Filter {
         responseBuilder.append("STATUS:");
         responseBuilder.append("\n\t");
         responseBuilder.append(response.getStatusLine());
-        responseBuilder.append("\n");
-        responseBuilder.append("HEADERS:");
-        responseBuilder.append("\n");
-        response.getHeaders().forEach(h -> {
-            responseBuilder.append("\t");
-            responseBuilder.append(h.getName());
-            responseBuilder.append(": ");
-            responseBuilder.append(h.getValue());
-            responseBuilder.append("\n");
-        });
+        getHeaders(responseBuilder, response.getHeaders());
 
         responseBuilder.append("BODY:");
         responseBuilder.append("\n");
         responseBuilder.append(response.getBody().prettyPrint());
         ScenarioManager.getInstance().getScenario().write(responseBuilder.toString());
         return response;
+    }
+
+    private void getHeaders(StringBuilder requestBuilder, Headers headers) {
+        requestBuilder.append("\n");
+
+        requestBuilder.append("HEADERS:");
+        requestBuilder.append("\n");
+        headers.forEach(h -> {
+            requestBuilder.append("\t");
+            requestBuilder.append(h.getName());
+            requestBuilder.append(": ");
+            requestBuilder.append(h.getValue());
+            requestBuilder.append("\n");
+        });
     }
 }
 
