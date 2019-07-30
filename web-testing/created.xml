@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel-Test-Suite" parallel="tests" thread-count="6">
+    <test name="chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="be.refleqt.projectname.tests.MultiExecutor"/>
+        </classes>
+    </test>
+    <test name="firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="be.refleqt.projectname.tests.MultiExecutor"/>
+        </classes>
+    </test>
+</suite>
