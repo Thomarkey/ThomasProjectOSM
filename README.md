@@ -103,3 +103,54 @@ e.g. `-DtakeScreenshots=true`
 * True
 * False
 * All other values are seens as False.
+
+#How to use app-testing
+
+#### New device setup
+* Right click on `Resource Bundle 'devices'`
+* Select `new` --> `Add Property File to Resource Bundle`
+* Press `+` in the popup that opened
+* Enter the device you'd like to add
+* Press OK
+* Copy the content of a device from the same platform
+* Change the values that need changing
+* Congratulations you'd added a device!
+
+#### TestExecutor
+To execute a single device you can use the testExecutor.
+
+For multiple devices you should use testSuite.xml
+
+###### System property:
+* `-DcucumberTag=tag` optional, default value is **wip** (@wip -> work in progress)
+* `-Ddevice=EMULATOR_ANDROID` optional, default value is **EMULATOR_ANDROID**
+
+#### Profile
+See the profile defined in `pom.xml`
+
+Run the profile by executing `mvn clean verify -PappTestSuite -Dprop...` in your terminal
+
+###### System property:
+* `-Ddevices=IPHONE_6,EMULATOR_ANDROID`
+    * Give a list of comma separated devices.
+    * The list of devices will be fed to `create_xml.py` in /scripts
+    * This script will generate a new `testSuite.xml` with those devices
+* Provide ENV specific properties here as well! (See next topics)
+
+#### SauceLabs setup
+You'll need a sauce labs account with at least one active appium project. Use these credentials.
+###### System property:
+* `-Dsaucelabs_username=user`
+* `-Dsaucelabs_accessKey=key`
+
+#### BrowserStack setup
+You'll need a browser stack account!
+###### System property:
+* `-Dbrowserstack_username=user`
+* `-Dbrowserstack_accessKey=key`
+
+##Global Properties
+##### Property to set "takeScreenshots".
+e.g. `-DtakeScreenshots=true` 
+   
+-> Default value: true

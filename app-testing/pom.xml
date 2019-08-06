@@ -23,7 +23,7 @@
 
     <profiles>
         <profile>
-            <id>name</id>
+            <id>appTestSuite</id>
             <build>
                 <plugins>
                     <!-- Creating the testSuite.xml -->
@@ -120,11 +120,9 @@
                                 <configuration>
                                     <projectName>Cucumber-report for app-testing</projectName>
                                     <outputDirectory>${project.build.directory}/</outputDirectory>
-                                    <cucumberOutput>${project.build.directory}/cucumber-report/</cucumberOutput>
                                     <jsonFiles>
                                         <param>**/*.json</param>
                                     </jsonFiles>
-                                    <parallelTesting>true</parallelTesting>
                                 </configuration>
                             </execution>
                         </executions>
