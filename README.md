@@ -124,6 +124,10 @@ For multiple devices you should use testSuite.xml
 ###### System property:
 * `-DcucumberTag=tag` optional, default value is **wip** (@wip -> work in progress)
 * `-Ddevice=EMULATOR_ANDROID` optional, default value is **EMULATOR_ANDROID**
+* `-Dthreads=1` optional, default value is **1**
+    * Recommended to keep this at 1
+    * Can be set higher when using cloud provider
+    * This will run multiple of your given device and run the scenarios parallel as well
 
 #### Profile
 See the profile defined in `pom.xml`
