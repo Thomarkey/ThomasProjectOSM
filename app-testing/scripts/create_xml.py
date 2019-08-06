@@ -24,10 +24,6 @@ def main():
         doc = ET.SubElement(root, "test", name="Test-" + device)
         ET.SubElement(doc, "parameter", name="device", value=device)
 
-        #If present adding tag to the test
-        if tags is not None:
-            ET.SubElement(doc, "parameter", name="tags", value=tags)
-
         #Defining the test executor
         classes = ET.SubElement(doc, "classes")
         ET.SubElement(classes, "class", name="be.refleqt.projectname.tests.TestExecutor")
@@ -52,13 +48,6 @@ def parse_args():
                         required=True,
                         help="List of devices seperated by a ,"
                              "example: IPHONE_6,IPHONE_7,...",
-                        type=str
-                        )
-
-    parser.add_argument("-t",
-                        "--tags",
-                        required=False,
-                        help="Tags you'd like to run",
                         type=str
                         )
 
