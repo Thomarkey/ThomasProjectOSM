@@ -12,7 +12,6 @@ def main():
     #Parsing of the arguments
     args = parse_args()
     devices = args.devices.split(',')
-    tags = args.tags
     threads = args.thread_count
 
     #Creating the suite
