@@ -1,0 +1,7 @@
+<aspectj>
+    <aspects>
+        <aspect name="Logger"/>
+    </aspects>
+    <weaver options="-Xset:weaveJavaxPackages=true -Xset:weaveJavaPackages=true">
+    </weaver>
+</aspectj>
