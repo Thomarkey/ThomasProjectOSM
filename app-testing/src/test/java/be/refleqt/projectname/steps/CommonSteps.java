@@ -25,7 +25,7 @@ public class CommonSteps {
         DriverProvider.getDriver().quit();
     }
 
-    @When("I create a new task called (.*)")
+    @When("I create a new task called {}")
     public void pressSearch(String term) {
         new HomePage()
                 .clickCreateNewTask()
@@ -38,7 +38,7 @@ public class CommonSteps {
         new HomePage().checkAllCheckboxes(true);
     }
 
-    @And("I edit the last task to (.*)")
+    @And("I edit the last task to {}")
     public void iEditTheLastTaskTo(String term) {
         new HomePage()
                 .selectLastTask()
