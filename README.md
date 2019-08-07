@@ -10,7 +10,52 @@ in all future assignments.
 
 If you feel something can be improved, please do make a Pull Request!
 
-At 24/06/2019 only selenium web-testing is supplied in the base.
+At 05/07/2019 only selenium web-testing and API-Testing is supplied in the base.
+
+#How to use api-testing
+
+Refer to [Executors](README.md#executors) for explanation of the executors.
+
+## api-support module
+The purpose of this module is to generate the swagger-codegen DTO. It 
+also provides logging to Rest-Assured and http calls done via the 
+generated swagger-codegen DTO.
+
+######To set-up the api-support module:
+ * Open `api-support` module
+ * Open `pom.xml`
+ * Adjust the download and generate steps with your urls
+    * When you have more then 1 swagger file
+        * Create multiple download steps
+        * Create multiple generate steps with the same package.
+            * This is necessary for the logging to work.
+            * If the Generating fails this means not all Models or Request
+            are unique and this should be tackled by your dev team.
+ * Select the value of `default-package` if you want to change this
+    * `CMD + Shift + R` to replace all
+    * Change the default value to the wished dto package name
+        * This should change `Logger.aj`, `pom.xml`, `ApiCaller.class` & `ApiResponseOrException.class` 
+
+## api-testing module
+This api-testing uses the ApiCaller method. This method returns an
+ApiResponseOrException object which contains both ApiResponse and 
+ApiException. The latest ApiException is saved to the current state
+so that a generic error handling step can be applied to it.
+
+######CommonSteps
+The system errors are mapped to the best practice of how to throw 
+ApiException in a REST environment. If your dev team has implemented
+other ways of handling errors you'll have to adjust these generic
+functions.
+
+You can find some examples of how to use @Transpose and World
+in the CommonSteps. We expect you delete these functions after
+understanding them.
+
+Examples include:
+ * POST-call with @Transpose for the body
+ * Get-call with a stored ID
+ * oAuth call via multi data part with rest-assured
 
 #How to use web-testing
 
@@ -103,6 +148,17 @@ e.g. `-DtakeScreenshots=true`
 * True
 * False
 * All other values are seens as False.
+
+##### Property to set "decoratorTimeout".
+e.g. `-DdecoratorTimeout=10` 
+   
+-> Default value: "1"
+
+This property sets the minimum time the decorator will look for elements.
+The value is done x6 for the maximum wait time.
+
+###### Options
+* Long values
 
 #How to use app-testing
 

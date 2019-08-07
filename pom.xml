@@ -11,6 +11,8 @@
     <modules>
         <module>web-testing</module>
         <module>app-testing</module>
+        <module>api-support</module>
+        <module>api-testing</module>
     </modules>
 
     <properties>
@@ -30,10 +32,24 @@
 
         <!--SELENIUM VERSION-->
         <selenium.version>3.14.0</selenium.version>
-        <refleqt.selenium.version>1.0.0-SNAPSHOT</refleqt.selenium.version>
+        <refleqt.selenium.version>1.0.1-SNAPSHOT</refleqt.selenium.version>
 
         <!--ASSERTION DEPENDENCIES-->
         <assertj.version>3.8.0</assertj.version>
+
+        <!--SWAGGER CLIENT DEPENDENCIES-->
+        <swagger-annotations-version>1.5.21</swagger-annotations-version>
+        <jersey-version>2.26</jersey-version>
+        <jackson-version>2.9.7</jackson-version>
+        <jodatime-version>2.10</jodatime-version>
+        <google-api-client-version>1.25.0</google-api-client-version>
+        <jersey-common-version>2.27</jersey-common-version>
+        <gson-version>2.8.5</gson-version>
+        <gson-fire-version>1.8.3</gson-fire-version>
+        <okhttp.version>2.7.5</okhttp.version>
+        <rest.assured.version>3.0.0</rest.assured.version>
+        <hamcres.version>1.3</hamcres.version>
+        <log4j.version>2.6.2</log4j.version>
     </properties>
 
     <repositories>
@@ -52,13 +68,6 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <scope>test</scope>
-            <version>${assertj.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <scope>compile</scope>
             <version>${assertj.version}</version>
         </dependency>
 
@@ -189,5 +198,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

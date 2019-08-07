@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>refleqt-test</artifactId>
+        <groupId>be.refleqt.test</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>api-support</artifactId>
+
+    <properties>
+        <!--DTO CLIENT-->
+        <default-package>be.refleqt.base.test.dto</default-package>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- download swagger.json -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <executions>
+                    <execution>
+                        <id>download-swagger-json-1</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>download-single</goal>
+                        </goals>
+                        <configuration>
+                            <!-- TODO FILL IN DOWNLOAD SPECS FOR SWAGGER FILE -->
+                            <url>https://petstore.swagger.io/v2/</url>
+                            <fromFile>swagger.json</fromFile>
+
+                            <toDir>${project.build.directory}</toDir>
+                        </configuration>
+                    </execution>
+<!--                    TODO: When you have multiple files, add multiple execution steps. -->
+<!--                    <execution>-->
+<!--                        <id>download-swagger-json-2</id>-->
+<!--                        <phase>generate-sources</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>download-single</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            TODO FILL IN DOWNLOAD SPECS FOR SWAGGER FILE ; -->
+<!--                            <url>https://petstore.swagger.io/v2/</url>-->
+<!--                            <fromFile>swagger2.json</fromFile>-->
+<!--                                                                -->
+<!--                            <toDir>${project.build.directory}</toDir>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+                </executions>
+            </plugin>
+            <!-- activate the plugin -->
+            <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>2.3.1</version>
+                <executions>
+                    <execution>
+                        <id>generate-swagger-client-1</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <!-- specify the swagger json -->
+                            <!-- TODO: INPUT fromFile from download step -->
+                            <inputSpec>${project.build.directory}/swagger.json</inputSpec>
+
+                            <!-- target to generate java client code -->
+                            <language>java</language>
+
+                            <generateApiTests>false</generateApiTests>
+
+                            <apiPackage>${default-package}.api</apiPackage>
+                            <modelPackage>${default-package}.model</modelPackage>
+                            <invokerPackage>${default-package}</invokerPackage>
+
+                            <!-- pass any necessary config options -->
+                            <configOptions>
+                                <dateLibrary>java8</dateLibrary>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+<!--                    TODO: When you have multiple files, add multiple execution steps.   -->
+<!--                    TODO: It's important to keep the same default package, do not change this!-->
+<!--                    <execution>-->
+<!--                        <id>generate-swagger-client-2</id>-->
+<!--                        <phase>generate-sources</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                             TODO: INPUT fromFile from download step-->
+<!--                            <inputSpec>${project.build.directory}/swagger.json</inputSpec>-->
+
+<!--                            &lt;!&ndash; target to generate java client code &ndash;&gt;-->
+<!--                            <language>java</language>-->
+
+<!--                            <generateApiTests>false</generateApiTests>-->
+
+<!--                            <apiPackage>${default-package}.api</apiPackage>-->
+<!--                            <modelPackage>${default-package}.model</modelPackage>-->
+<!--                            <invokerPackage>${default-package}</invokerPackage>-->
+
+<!--                            <configOptions>-->
+<!--                                <dateLibrary>java8</dateLibrary>-->
+<!--                            </configOptions>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- dependencies are needed for the client being generated -->
+        <!--SWAGGER CLIENT DEPENDENCIES-->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger-annotations-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>${jersey-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>${jersey-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>${jersey-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${jodatime-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>${google-api-client-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-common</artifactId>
+            <version>${jersey-common-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectjweaver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.gsonfire</groupId>
+            <artifactId>gson-fire</artifactId>
+            <version>${gson-fire-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest.assured.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>${hamcres.version}</version>
+        </dependency>
+    </dependencies>
+</project>
