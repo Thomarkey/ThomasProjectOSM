@@ -208,9 +208,3 @@ You'll need a browser stack account!
 ###### System property:
 * `-Dbrowserstack_username=user`
 * `-Dbrowserstack_accessKey=key`
-
-##Global Properties
-##### Property to set "takeScreenshots".
-e.g. `-DtakeScreenshots=true` 
-   
--> Default value: true
