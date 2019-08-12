@@ -14,6 +14,6 @@ public class MultiExecutor {
                 "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");
 
-        cucumber.api.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+        io.cucumber.core.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
     }
 }

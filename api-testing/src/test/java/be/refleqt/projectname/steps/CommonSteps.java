@@ -8,11 +8,11 @@ import be.refleqt.projectname.support.ApiManager;
 import be.refleqt.projectname.support.ApiResponseOrException;
 import be.refleqt.projectname.utils.World;
 import com.fasterxml.jackson.databind.JsonNode;
-import cucumber.api.Scenario;
-import cucumber.api.Transpose;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import io.cucumber.core.api.Scenario;
+import io.cucumber.java.Before;
+import io.cucumber.java.Transpose;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
 

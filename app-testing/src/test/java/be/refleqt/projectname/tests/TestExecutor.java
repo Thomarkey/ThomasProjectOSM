@@ -20,7 +20,7 @@ public class TestExecutor {
             DriverProvider.setDevice(device);
         }
 
-        cucumber.api.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+        io.cucumber.core.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
     }
 
     @BeforeSuite

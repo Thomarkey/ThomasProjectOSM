@@ -20,7 +20,7 @@ public class MultiExecutor {
             DriverProvider.setBrowser(browser);
         }
 
-        cucumber.api.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+        io.cucumber.core.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
     }
 
     /**

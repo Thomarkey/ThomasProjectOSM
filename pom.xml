@@ -28,7 +28,7 @@
         <compliance.level>1.8</compliance.level>
 
         <!--CUCUMBER DEPENDENCIES-->
-        <cucumber.version>4.3.1</cucumber.version>
+        <cucumber.version>4.7.1</cucumber.version>
 
         <!--SELENIUM VERSION-->
         <selenium.version>3.14.0</selenium.version>
@@ -93,11 +93,6 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java8</artifactId>
-            <version>${cucumber.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
         <dependency>

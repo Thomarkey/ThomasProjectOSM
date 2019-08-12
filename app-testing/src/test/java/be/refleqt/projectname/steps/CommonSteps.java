@@ -4,13 +4,13 @@ package be.refleqt.projectname.steps;
 import be.refleqt.library.appium.DriverProvider;
 import be.refleqt.library.appium.ScenarioManager;
 import be.refleqt.projectname.pages.page.HomePage;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.core.api.Scenario;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class CommonSteps {
 

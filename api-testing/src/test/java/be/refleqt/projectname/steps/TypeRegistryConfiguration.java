@@ -2,8 +2,8 @@ package be.refleqt.projectname.steps;
 
 import be.refleqt.base.test.dto.model.Pet;
 import be.refleqt.projectname.converters.PetConverter;
-import cucumber.api.TypeRegistry;
-import cucumber.api.TypeRegistryConfigurer;
+import io.cucumber.core.api.TypeRegistry;
+import io.cucumber.core.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTableType;
 
 import java.util.Locale;
