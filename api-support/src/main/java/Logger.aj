@@ -1,10 +1,10 @@
 import be.refleqt.base.test.dto.ApiException;
 import be.refleqt.base.test.dto.Pair;
+import be.refleqt.logger.ScenarioManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.Response;
 import org.apache.logging.log4j.LogManager;
-import be.refleqt.logger.ScenarioManager;
 
 import java.io.File;
 import java.util.List;
