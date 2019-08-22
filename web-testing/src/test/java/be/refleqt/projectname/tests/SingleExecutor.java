@@ -3,6 +3,7 @@ package be.refleqt.projectname.tests;
 import be.refleqt.library.selenium.driver.setup.DockerProvider;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.CucumberOptions.SnippetType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -11,7 +12,7 @@ import org.testng.annotations.BeforeSuite;
         glue = "be.refleqt.projectname.steps",
         plugin = {"pretty", "json:target/cucumber/json/full.json", "html:target/cucumber/html/full/"},
         strict = true,
-        snippets = CucumberOptions.SnippetType.CAMELCASE
+        snippets = SnippetType.CAMELCASE
 )
 public class SingleExecutor extends AbstractTestNGCucumberTests {
 
