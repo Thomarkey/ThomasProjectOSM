@@ -36,14 +36,14 @@ public class CommonSteps {
         DriverProvider.goToURL(website);
     }
 
-    @When("^I search for {}")
+    @When("I search for {}")
     public void iLookFor(String value) throws Throwable {
         world.search = value;
         new HomePage().enterSearch(value)
                 .clickSearch();
     }
 
-    @Then("^The first result is {}")
+    @Then("The first result is {}")
     public void theFirstResult(String value) throws Throwable {
         new HomePage().getFirstSearchItem(world).validateFirstSearchItem(value);
     }

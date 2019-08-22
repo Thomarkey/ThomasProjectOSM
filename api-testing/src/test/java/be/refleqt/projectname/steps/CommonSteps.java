@@ -96,7 +96,7 @@ public class CommonSteps {
                 .isEqualTo(200);
     }
 
-    @Then("The created pet is named (\\S+)")
+    @Then("The created pet is named {word}")
     public void theCreatedPetIsNamedName(String name) {
         world.petResponse = ApiCaller.call(
                 () -> ApiManager.getPetApi().getPetByIdWithHttpInfo(world.petId)

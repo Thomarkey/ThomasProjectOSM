@@ -6,7 +6,7 @@ import io.cucumber.java.en.When;
 
 public class ECommerceSteps {
 
-    @When("^I add the first bestseller item to my cart")
+    @When("I add the first bestseller item to my cart")
     public void addFirstItem() {
         new ECommercePage()
                 .clickBestSeller()
