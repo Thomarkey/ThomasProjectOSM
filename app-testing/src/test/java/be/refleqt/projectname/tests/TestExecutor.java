@@ -1,6 +1,8 @@
 package be.refleqt.projectname.tests;
 
 import be.refleqt.library.appium.DriverProvider;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 public class TestExecutor {
@@ -20,7 +22,11 @@ public class TestExecutor {
             DriverProvider.setDevice(device);
         }
 
-        io.cucumber.core.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+        byte exitCode = io.cucumber.core.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+
+        if (exitCode != 0) {
+            Reporter.getCurrentTestResult().setStatus(ITestResult.FAILURE);
+        }
     }
 
     @BeforeSuite

@@ -1,5 +1,7 @@
 package be.refleqt.projectname.tests;
 
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.Test;
 
 public class MultiExecutor {
@@ -14,6 +16,10 @@ public class MultiExecutor {
                 "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");
 
-        io.cucumber.core.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+        byte exitCode = io.cucumber.core.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+
+        if (exitCode != 0) {
+            Reporter.getCurrentTestResult().setStatus(ITestResult.FAILURE);
+        }
     }
 }
