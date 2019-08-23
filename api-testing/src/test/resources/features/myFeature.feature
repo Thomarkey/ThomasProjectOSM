@@ -13,6 +13,10 @@ Feature: Example feature
       | 400 | Jefke |
 
 
+  Scenario: [EXAMPLE] Define parameter
+    Given New color green is printed
+
+
   Scenario: [EXAMPLE] MultiData Form request (Uploading CSV / OAuth Calls)
     Given I perform a multiData form request
 

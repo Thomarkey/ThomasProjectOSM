@@ -3,6 +3,7 @@ package be.refleqt.projectname.steps;
 import be.refleqt.base.test.dto.model.Pet;
 import be.refleqt.logger.JsonNodeHelper;
 import be.refleqt.logger.ScenarioManager;
+import be.refleqt.projectname.converters.Color;
 import be.refleqt.projectname.support.ApiCaller;
 import be.refleqt.projectname.support.ApiManager;
 import be.refleqt.projectname.support.ApiResponseOrException;
@@ -29,8 +30,7 @@ public class CommonSteps {
     private World world;
 
     /**
-     * @param world
-     * Don't forgot to generate a constructor with a World in each step class you create!
+     * @param world Don't forgot to generate a constructor with a World in each step class you create!
      */
     public CommonSteps(World world) {
         this.world = world;
@@ -123,5 +123,10 @@ public class CommonSteps {
 
         assertThat(responseBody).isNotNull();
         world.accessToken = responseBody.get("access_token").asText();
+    }
+
+    @Given("New color {color} is printed")
+    public void newColor(Color color) {
+        System.out.println(color.getColor());
     }
 }
