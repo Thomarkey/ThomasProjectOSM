@@ -1,9 +1,9 @@
 package be.refleqt.projectname.tests;
 
 import be.refleqt.library.selenium.driver.setup.DockerProvider;
-import cucumber.api.CucumberOptions;
-import cucumber.api.SnippetType;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.CucumberOptions.SnippetType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 

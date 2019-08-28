@@ -2,6 +2,8 @@ package be.refleqt.projectname.tests;
 
 import be.refleqt.library.selenium.DriverProvider;
 import be.refleqt.library.selenium.driver.setup.DockerProvider;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 public class MultiExecutor {
@@ -20,7 +22,11 @@ public class MultiExecutor {
             DriverProvider.setBrowser(browser);
         }
 
-        cucumber.api.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+        byte exitCode = io.cucumber.core.cli.Main.run(args, Thread.currentThread().getContextClassLoader());
+
+        if (exitCode != 0) {
+            Reporter.getCurrentTestResult().setStatus(ITestResult.FAILURE);
+        }
     }
 
     /**

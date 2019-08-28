@@ -16,7 +16,7 @@
         <dependency>
             <groupId>be.refleqt.library</groupId>
             <artifactId>RefleqtAppium</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${refleqt.appium.version}</version>
         </dependency>
     </dependencies>
 
