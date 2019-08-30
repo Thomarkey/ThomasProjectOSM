@@ -30,16 +30,18 @@ public final class ApiCaller {
 
         private ApiResponseOrException<T> callApi() {
             ApiResponse<T> apiResponse = null;
+            ApiException apiException = null;
 
             try {
                 apiResponse = apiCall.call();
             } catch (ApiException e) {
-                world.get().lastApiException = e;
+                apiException = e;
+                world.get().lastApiException = apiException;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
 
-            return new ApiResponseOrException<>(apiResponse, world.get().lastApiException);
+            return new ApiResponseOrException<>(apiResponse, apiException);
         }
     }
 }
