@@ -23,16 +23,19 @@
         <maven.surefire.version>3.0.0-M3</maven.surefire.version>
         <maven.dependency.version>3.0.0</maven.dependency.version>
         <maven.compiler.version>3.6.1</maven.compiler.version>
-        <aspectjweaver.version>1.8.7</aspectjweaver.version>
+        <aspectjweaver.version>1.8.14</aspectjweaver.version>
         <aspectj.maven.plugin.version>1.8</aspectj.maven.plugin.version>
         <compliance.level>1.8</compliance.level>
 
         <!--CUCUMBER DEPENDENCIES-->
-        <cucumber.version>4.3.1</cucumber.version>
+        <cucumber.version>4.7.1</cucumber.version>
 
         <!--SELENIUM VERSION-->
         <selenium.version>3.14.0</selenium.version>
-        <refleqt.selenium.version>1.0.1-SNAPSHOT</refleqt.selenium.version>
+        <refleqt.selenium.version>1.0.2-SNAPSHOT</refleqt.selenium.version>
+
+        <!--APPIUM VERSION-->
+        <refleqt.appium.version>1.0.1-SNAPSHOT</refleqt.appium.version>
 
         <!--ASSERTION DEPENDENCIES-->
         <assertj.version>3.8.0</assertj.version>
@@ -49,7 +52,7 @@
         <okhttp.version>2.7.5</okhttp.version>
         <rest.assured.version>3.0.0</rest.assured.version>
         <hamcres.version>1.3</hamcres.version>
-        <log4j.version>2.6.2</log4j.version>
+        <log4j.version>2.12.1</log4j.version>
     </properties>
 
     <repositories>
@@ -93,11 +96,6 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java8</artifactId>
-            <version>${cucumber.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
         <dependency>
@@ -186,7 +184,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
                 <configuration>
-                    <argLine>-javaagent:"${project.build.directory}${file.separator}aspectjweaver-1.8.7.jar"</argLine>
+                    <argLine>
+                        -javaagent:"${project.build.directory}${file.separator}aspectjweaver-${aspectjweaver.version}.jar"
+                    </argLine>
                     <systemProperties>
                         <property>
                             <name>aj.weaving.verbose</name>

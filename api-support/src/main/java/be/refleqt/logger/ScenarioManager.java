@@ -1,6 +1,6 @@
 package be.refleqt.logger;
 
-import cucumber.api.Scenario;
+import io.cucumber.core.api.Scenario;
 
 public class ScenarioManager {
 
