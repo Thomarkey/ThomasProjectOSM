@@ -26,29 +26,6 @@
             <id>appTestSuite</id>
             <build>
                 <plugins>
-                    <!-- Creating the testSuite.xml -->
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>python-build</id>
-                                <phase>prepare-package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <executable>python</executable>
-                            <workingDirectory>scripts/</workingDirectory>
-                            <arguments>
-                                <argument>create_xml.py</argument>
-                                <argument>-d${devices}</argument>
-                            </arguments>
-                        </configuration>
-                    </plugin>
-
                     <!-- downloading apps -->
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
@@ -98,10 +75,10 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.22.0</version>
                         <configuration>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>testSuite.xml</suiteXmlFile>
-                            </suiteXmlFiles>
                             <skipTests>false</skipTests>
+                            <includes>
+                                <includes>**/TestExecutor.java</includes>
+                            </includes>
                         </configuration>
                     </plugin>
 
