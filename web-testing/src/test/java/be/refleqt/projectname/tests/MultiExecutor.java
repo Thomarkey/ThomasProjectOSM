@@ -17,7 +17,7 @@ public class MultiExecutor {
     public void executeTest(String browser) {
         String tag = System.getProperty("cucumberTag", "wip");
         String arg = "src/test/resources/features/ --threads " + System.getProperty("threads", "2") +
-                " --plugin json:target/cucumber-report/test.json " +
+                " --plugin json:target/cucumber-report/" + browser + ".json " +
                 "--plugin html:target/cucumber-report/html " +
                 "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");
