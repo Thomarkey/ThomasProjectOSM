@@ -38,7 +38,7 @@ public class MultiExecutor {
         DockerProvider.getInstance().setupDockerGrid(System.getProperty("threads", "2"));
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public static void tearDownDocker() {
         DockerProvider.getInstance().tearDownDockerGrid();
     }
