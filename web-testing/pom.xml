@@ -36,6 +36,7 @@
                         <version>3.0.0-M3</version>
                         <configuration>
                             <skipTests>false</skipTests>
+                            <testFailureIgnore>true</testFailureIgnore>
                             <includes>
                                 <includes>**/MultiExecutor.java</includes>
                             </includes>
