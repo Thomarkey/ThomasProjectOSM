@@ -1,0 +1,94 @@
+/////////////////////////////////////////////////////////
+// Fill node with the dedicated node for your testing. //
+/////////////////////////////////////////////////////////
+
+node('vps') {
+
+    /////////////////////////////////////////////////////////////////////////
+    // Properties that set how long we should keep a build. Set to 10 days //
+    /////////////////////////////////////////////////////////////////////////
+
+    properties(
+            [
+                    [
+                            $class  : 'BuildDiscarderProperty',
+                            strategy:
+                                    [
+                                            $class               : 'LogRotator',
+                                            artifactDaysToKeepStr: '10',
+                                            artifactNumToKeepStr : '10',
+                                            daysToKeepStr        : '10',
+                                            numToKeepStr         : '10'
+                                    ]
+                    ]
+            ]
+    );
+
+    //////////////////////////////////////////////////////////////////////////////
+    // try {} catch{} is necessary to have the test continue if something fails //
+    //////////////////////////////////////////////////////////////////////////////
+
+    try {
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // Stage checkout git                                                                   //
+        //      - branch -> branch you'd like to checkout                                       //
+        //      - credentialsId -> ID found in credentials that has access to your git repo     //
+        //      - url -> your git repo url                                                      //
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        stage('checkout') {
+            git branch: 'master',
+                    credentialsId: 'Jenkins SSH',
+                    url: 'git@bitbucket.org:xploregroup/refleqt-base.git'
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // Stage to execute the tests                                                           //
+        //      - 'clean verify' -> maven goals to be run                                       //
+        //      - '-fae' -> fail at end                                                         //
+        //      - '-P genericSuite' -> profile that will be executed. Defined in the POM        //
+        //      - '-Dpropertie=value' -> Setting a system property for the test to use          //
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        stage('test') {
+            sh "mvn clean verify -fae -P genericSuite " +
+                    "-Denv=docker " +
+                    "-Dbrowser=chrome " +
+                    "-Dthreads=3"
+        }
+
+
+    } catch (e) {
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // Catch mvn failing error when a test has failed.                                      //
+        // this is done so we can still generate HTML report if a test failed                   //
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        echo 'build failed'
+        currentBuild.result = "FAILED"
+        throw e
+    } finally {
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // Stage to generate HTML report                                                        //
+        //      See documentation: https://jenkins.io/doc/pipeline/steps/cucumber-reports/      //
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+        stage('Generate HTML report') {
+            cucumber buildStatus: 'UNSTABLE',
+                    fileIncludePattern: '**/cucumber*/*.json',
+                    trendsLimit: 10,
+                    skipEmptyJSONFiles: true,
+                    mergeFeaturesById: true
+        }
+
+
+        ///////////////////////////////////////////////////////////////////
+        // Needs Slack Jenkins Plugin (https://plugins.jenkins.io/slack) //
+        // Uncomment if you'd like to use this.                         //
+        /////////////////////////////////////////////////////////////////
+        // buildStatus = currentBuild.result ?: 'SUCCESS'
+        // slackSend message: "Build ${env.JOB_NAME} ${env.BUILD_NUMBER} ended with status ${buildStatus} (<${env.BUILD_URL}>)"
+    }
+}
