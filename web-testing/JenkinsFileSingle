@@ -52,9 +52,9 @@ node('vps') {
         //////////////////////////////////////////////////////////////////////////////////////////
 
         stage('test') {
-            sh "mvn clean verify -fae -P multiExecutorWeb " +
+            sh "mvn clean verify -fae -P singleExecutorWeb " +
                     "-Denv=docker " +
-                    "-Dbrowser=chrome,ff " +
+                    "-Dbrowser=chrome " +
                     "-Dthreads=3 " +
                     "-DcucumberTag=wip"
         }
