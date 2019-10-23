@@ -1,15 +1,11 @@
 package be.refleqt.projectname.steps;
 
-import be.refleqt.library.selenium.DriverProvider;
-import be.refleqt.library.selenium.ScenarioManager;
-import be.refleqt.projectname.pages.HomePage;
-import be.refleqt.projectname.support.World;
-import io.cucumber.core.api.Scenario;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import be.refleqt.library.selenium.*;
+import be.refleqt.projectname.pages.*;
+import be.refleqt.projectname.support.*;
+import io.cucumber.core.api.*;
+import io.cucumber.java.*;
+import io.cucumber.java.en.*;
 
 public class CommonSteps {
 
@@ -45,6 +41,6 @@ public class CommonSteps {
 
     @Then("The first result is {}")
     public void theFirstResult(String value) throws Throwable {
-        new HomePage().getFirstSearchItem(world).validateFirstSearchItem(value);
+        new HomePage().getFirstSearchItem().validateFirstSearchItem(value);
     }
 }

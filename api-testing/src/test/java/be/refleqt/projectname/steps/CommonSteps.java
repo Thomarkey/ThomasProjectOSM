@@ -1,29 +1,21 @@
 package be.refleqt.projectname.steps;
 
-import be.refleqt.base.test.dto.model.Pet;
-import be.refleqt.logger.JsonNodeHelper;
-import be.refleqt.logger.ScenarioManager;
-import be.refleqt.projectname.converters.Color;
-import be.refleqt.projectname.support.ApiCaller;
-import be.refleqt.projectname.support.ApiManager;
-import be.refleqt.projectname.support.ApiResponseOrException;
-import be.refleqt.projectname.utils.World;
-import com.fasterxml.jackson.databind.JsonNode;
-import io.cucumber.core.api.Scenario;
-import io.cucumber.java.Before;
-import io.cucumber.java.Transpose;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.restassured.http.Header;
-import io.restassured.response.Response;
+import be.refleqt.base.test.dto.model.*;
+import be.refleqt.logger.*;
+import be.refleqt.projectname.support.*;
+import be.refleqt.projectname.transformers.*;
+import be.refleqt.projectname.utils.*;
+import com.fasterxml.jackson.databind.*;
+import io.cucumber.core.api.*;
+import io.cucumber.java.*;
+import io.cucumber.java.en.*;
+import io.restassured.http.*;
+import io.restassured.response.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
+import static io.restassured.RestAssured.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class CommonSteps {
 
@@ -77,12 +69,9 @@ public class CommonSteps {
         );
     }
 
-
     /**
      * Everything under here are examples of how to use the base.
      * We expect you to delete these functions.
-     *
-     * @Transpose looks at TypeRegistryConfiguration to map to a converter located in be.refleqt.projectname.converters
      */
     @Given("I create a pet with:")
     public void iCreateAPet(@Transpose Pet pet) {

@@ -1,4 +1,4 @@
-package be.refleqt.projectname.converters;
+package be.refleqt.projectname.transformers;
 
 public class Color {
 

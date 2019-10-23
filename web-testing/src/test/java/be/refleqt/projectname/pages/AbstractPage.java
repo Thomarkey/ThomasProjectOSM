@@ -1,11 +1,17 @@
 package be.refleqt.projectname.pages;
 
-import be.refleqt.projectname.support.PropertiesReader;
+import be.refleqt.projectname.support.*;
 
 /**
  * In this class you can override the already defined functions locally
  */
 public abstract class AbstractPage extends be.refleqt.library.selenium.AbstractPage {
+
+    public static ThreadLocal<World> world = new ThreadLocal<>();
+
+    public static void setWorld(World world) {
+        AbstractPage.world.set(world);
+    }
 
     public AbstractPage() {
         super();

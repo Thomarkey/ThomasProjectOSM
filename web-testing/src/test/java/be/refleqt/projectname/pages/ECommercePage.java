@@ -1,8 +1,7 @@
 package be.refleqt.projectname.pages;
 
-import be.refleqt.library.selenium.driver.element.RefleqtListOfWebElements;
-import be.refleqt.library.selenium.driver.element.RefleqtWebElement;
-import org.openqa.selenium.support.FindBy;
+import be.refleqt.library.selenium.driver.element.*;
+import org.openqa.selenium.support.*;
 
 public class ECommercePage extends AbstractPage {
 

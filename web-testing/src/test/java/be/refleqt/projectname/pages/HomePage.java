@@ -1,9 +1,7 @@
 package be.refleqt.projectname.pages;
 
-import be.refleqt.library.selenium.driver.element.RefleqtWebElement;
-import be.refleqt.projectname.support.World;
-import org.openqa.selenium.support.FindBy;
-
+import be.refleqt.library.selenium.driver.element.*;
+import org.openqa.selenium.support.*;
 
 public class HomePage extends AbstractPage {
 
@@ -30,9 +28,9 @@ public class HomePage extends AbstractPage {
         firstSearchResultLbl.validateTextToMatch(value);
     }
 
-    public HomePage getFirstSearchItem(World world) {
+    public HomePage getFirstSearchItem() {
         firstSearchResultLbl.waitForElementToBeVisible();
-        world.result = firstSearchResultLbl.getText();
+        world.get().result = firstSearchResultLbl.getText();
         return this;
     }
 }

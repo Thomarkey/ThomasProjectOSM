@@ -1,12 +1,12 @@
 package be.refleqt.projectname.support;
 
-import be.refleqt.base.test.dto.ApiClient;
-import be.refleqt.base.test.dto.api.PetApi;
-import be.refleqt.logger.CustomLogFilter;
-import be.refleqt.projectname.utils.World;
-import io.restassured.RestAssured;
+import be.refleqt.base.test.dto.*;
+import be.refleqt.base.test.dto.api.*;
+import be.refleqt.logger.*;
+import be.refleqt.projectname.utils.*;
+import io.restassured.*;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class ApiManager {
 
@@ -25,14 +25,21 @@ public class ApiManager {
 
     public static PetApi getPetApi() {
         PetApi petApi = new PetApi();
-        ApiClient apiClient = petApi.getApiClient();
+        petApi.setApiClient(getDefaultApiClient(petApi.getApiClient()));
+        return petApi;
+    }
 
+    //Sets the base path and other default generic parameters.
+    private static ApiClient getDefaultApiClient(ApiClient apiClient) {
         apiClient.setBasePath(basePath);
         apiClient.getHttpClient().setConnectTimeout(timeOut, TimeUnit.SECONDS);
+        return apiClient;
+    }
 
-//        TODO: Add default headers if needed
-//        apiClient.addDefaultHeader("Authorization", "Bearer" + world.get().token);
-        petApi.setApiClient(apiClient);
-        return petApi;
+    //Extension of the default api client with required headers like a access token
+    private static ApiClient getAuthorizedApiClient(ApiClient apiClient) {
+        return getDefaultApiClient(apiClient)
+                .addDefaultHeader("Authorization", "Bearer " + world.get().accessToken)
+                .addDefaultHeader("OtherRequiredHeader", "value");
     }
 }
