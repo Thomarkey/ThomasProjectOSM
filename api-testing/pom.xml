@@ -27,7 +27,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M3</version>
+                        <version>${maven.surefire.version}</version>
                         <configuration>
                             <testFailureIgnore>true</testFailureIgnore>
                             <skipTests>false</skipTests>
@@ -39,7 +39,7 @@
                     <plugin>
                         <groupId>net.masterthought</groupId>
                         <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>4.11.0</version>
+                        <version>${maven.cucumber.reporting.version}</version>
                         <executions>
                             <execution>
                                 <id>execution</id>

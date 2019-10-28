@@ -33,6 +33,7 @@
 
         <!--CUCUMBER DEPENDENCIES-->
         <cucumber.version>4.8.0</cucumber.version>
+        <maven.cucumber.reporting.version>4.11.0</maven.cucumber.reporting.version>
 
         <!--SELENIUM VERSION-->
         <selenium.version>3.141.59</selenium.version>
