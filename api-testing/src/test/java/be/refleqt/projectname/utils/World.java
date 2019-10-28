@@ -6,6 +6,8 @@ import be.refleqt.projectname.support.ApiCaller;
 import be.refleqt.projectname.support.ApiManager;
 import be.refleqt.projectname.support.ApiResponseOrException;
 
+import java.util.List;
+
 public class World {
     public World() {
         ApiCaller.setWorld(this);
@@ -13,7 +15,7 @@ public class World {
     }
 
     public long petId;
-    public ApiResponseOrException<Pet> petResponse;
+    public ApiResponseOrException<List<Pet>> petResponse;
     public ApiException lastApiException;
     public String accessToken;
 }

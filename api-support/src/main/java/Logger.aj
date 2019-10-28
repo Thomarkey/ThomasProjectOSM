@@ -3,7 +3,7 @@ import be.refleqt.base.test.dto.Pair;
 import be.refleqt.logger.ScenarioManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.squareup.okhttp.Response;
+import okhttp3.Response;
 import org.apache.logging.log4j.LogManager;
 
 import java.io.File;

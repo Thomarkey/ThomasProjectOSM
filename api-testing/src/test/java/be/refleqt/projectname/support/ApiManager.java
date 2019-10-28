@@ -23,16 +23,15 @@ public class ApiManager {
         ApiManager.world.set(world);
     }
 
-    public static PetApi getPetApi() {
-        PetApi petApi = new PetApi();
-        petApi.setApiClient(getDefaultApiClient(petApi.getApiClient()));
-        return petApi;
+    public static PetsApi getPetsApi() {
+        PetsApi petsApi = new PetsApi();
+        petsApi.setApiClient(getDefaultApiClient(petsApi.getApiClient()));
+        return petsApi;
     }
 
     //Sets the base path and other default generic parameters.
     private static ApiClient getDefaultApiClient(ApiClient apiClient) {
         apiClient.setBasePath(basePath);
-        apiClient.getHttpClient().setConnectTimeout(timeOut, TimeUnit.SECONDS);
         return apiClient;
     }
 

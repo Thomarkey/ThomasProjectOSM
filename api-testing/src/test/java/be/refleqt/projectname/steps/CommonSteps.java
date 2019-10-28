@@ -78,7 +78,7 @@ public class CommonSteps {
         world.petId = pet.getId();
 
         ApiResponseOrException<Void> response = ApiCaller.call(
-                () -> ApiManager.getPetApi().addPetWithHttpInfo(pet)
+                () -> ApiManager.getPetsApi().createPetsWithHttpInfo()
         );
 
         assertThat(response.getStatus())
@@ -88,10 +88,10 @@ public class CommonSteps {
     @Then("The created pet is named {word}")
     public void theCreatedPetIsNamedName(String name) {
         world.petResponse = ApiCaller.call(
-                () -> ApiManager.getPetApi().getPetByIdWithHttpInfo(world.petId)
+                () -> ApiManager.getPetsApi().showPetByIdWithHttpInfo(String.valueOf(world.petId))
         );
 
-        assertThat(world.petResponse.getApiResponse().getData().getName())
+        assertThat(world.petResponse.getApiResponse().getData().get(0).getName())
                 .isEqualToIgnoringCase(name);
     }
 
