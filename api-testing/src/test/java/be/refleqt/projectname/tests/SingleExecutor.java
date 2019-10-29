@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 @CucumberOptions(
         features = "src/test/resources/features/",
         glue = "be.refleqt.projectname.steps",
-        plugin = {"pretty", "json:target/cucumber/json/full.json", "html:target/cucumber/html/full/"},
+        plugin = {"progress", "json:target/cucumber/json/full.json", "html:target/cucumber/html/full/"},
         strict = true,
         snippets = SnippetType.CAMELCASE
 )
