@@ -9,12 +9,10 @@ import com.fasterxml.jackson.databind.*;
 import io.cucumber.core.api.*;
 import io.cucumber.java.*;
 import io.cucumber.java.en.*;
+import static io.restassured.RestAssured.*;
 import io.restassured.http.*;
 import io.restassured.response.*;
-
 import java.util.*;
-
-import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class CommonSteps {
@@ -78,7 +76,7 @@ public class CommonSteps {
         world.petId = pet.getId();
 
         ApiResponseOrException<Void> response = ApiCaller.call(
-                () -> ApiManager.getPetsApi().createPetsWithHttpInfo()
+                () -> ApiManager.getPetsApi().addPetWithHttpInfo(pet)
         );
 
         assertThat(response.getStatus())
@@ -88,10 +86,10 @@ public class CommonSteps {
     @Then("The created pet is named {word}")
     public void theCreatedPetIsNamedName(String name) {
         world.petResponse = ApiCaller.call(
-                () -> ApiManager.getPetsApi().showPetByIdWithHttpInfo(String.valueOf(world.petId))
+                () -> ApiManager.getPetsApi().getPetByIdWithHttpInfo(world.petId)
         );
 
-        assertThat(world.petResponse.getApiResponse().getData().get(0).getName())
+        assertThat(world.petResponse.getApiResponse().getData().getName())
                 .isEqualToIgnoringCase(name);
     }
 

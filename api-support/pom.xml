@@ -129,6 +129,11 @@
             <artifactId>hamcrest-all</artifactId>
             <version>${hamcres.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.oltu.oauth2</groupId>
+            <artifactId>org.apache.oltu.oauth2.client</artifactId>
+            <version>${oauth2.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -147,10 +152,10 @@
                         </goals>
                         <configuration>
                             <!-- TODO FILL IN DOWNLOAD SPECS FOR SWAGGER FILE -->
-                            <url>https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/modules/openapi-generator-gradle-plugin/samples/local-spec/</url>
-                            <fromFile>petstore-v3.0.yaml</fromFile>
+                            <url>https://petstore.swagger.io/v2/</url>
+                            <fromFile>swagger.json</fromFile>
 
-                            <toDir>${project.build.directory}</toDir>
+                            <toFile>${project.build.directory}/first.json</toFile>
                         </configuration>
                     </execution>
 <!--                    TODO: When you have multiple files, add multiple execution steps. -->
@@ -165,7 +170,7 @@
 <!--                            <url>https://petstore.swagger.io/v2/</url>-->
 <!--                            <fromFile>swagger2.json</fromFile>-->
 <!--                                                                -->
-<!--                            <toDir>${project.build.directory}</toDir>-->
+<!--                            <toFile>${project.build.directory}/second.json</toDir>-->
 <!--                        </configuration>-->
 <!--                    </execution>-->
                 </executions>
@@ -185,7 +190,7 @@
                         <configuration>
                             <!-- specify the swagger json -->
                             <!-- TODO: INPUT fromFile from download step -->
-                            <inputSpec>${project.build.directory}/petstore-v3.0.yaml</inputSpec>
+                            <inputSpec>${project.build.directory}/first.json</inputSpec>
 
                             <!-- target to generate java client code -->
                             <language>java</language>
@@ -199,7 +204,7 @@
 
                             <!-- pass any necessary config options -->
                             <configOptions>
-                                <dateLibrary>java8</dateLibrary>
+                                <dateLibrary>java</dateLibrary>
                             </configOptions>
                         </configuration>
                     </execution>
@@ -213,19 +218,20 @@
 <!--                        </goals>-->
 <!--                        <configuration>-->
 <!--                             TODO: INPUT fromFile from download step-->
-<!--                            <inputSpec>${project.build.directory}/swagger.json</inputSpec>-->
+<!--                            <inputSpec>${project.build.directory}/second.json</inputSpec>-->
 
 <!--                            &lt;!&ndash; target to generate java client code &ndash;&gt;-->
 <!--                            <language>java</language>-->
 
 <!--                            <generateApiTests>false</generateApiTests>-->
+<!--                            <generateModelTests>false</generateModelTests>-->
 
 <!--                            <apiPackage>${default-package}.api</apiPackage>-->
 <!--                            <modelPackage>${default-package}.model</modelPackage>-->
 <!--                            <invokerPackage>${default-package}</invokerPackage>-->
 
 <!--                            <configOptions>-->
-<!--                                <dateLibrary>java8</dateLibrary>-->
+<!--                                <dateLibrary>java</dateLibrary>-->
 <!--                            </configOptions>-->
 <!--                        </configuration>-->
 <!--                    </execution>-->

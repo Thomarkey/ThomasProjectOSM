@@ -6,8 +6,6 @@ import be.refleqt.logger.*;
 import be.refleqt.projectname.utils.*;
 import io.restassured.*;
 
-import java.util.concurrent.*;
-
 public class ApiManager {
 
     private static ThreadLocal<World> world = new ThreadLocal<>();
@@ -23,21 +21,20 @@ public class ApiManager {
         ApiManager.world.set(world);
     }
 
-    public static PetsApi getPetsApi() {
-        PetsApi petsApi = new PetsApi();
-        petsApi.setApiClient(getDefaultApiClient(petsApi.getApiClient()));
-        return petsApi;
+    public static PetApi getPetsApi() {
+        return new PetApi(getDefaultApiClient());
     }
 
     //Sets the base path and other default generic parameters.
-    private static ApiClient getDefaultApiClient(ApiClient apiClient) {
+    private static ApiClient getDefaultApiClient() {
+        ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(basePath);
         return apiClient;
     }
 
     //Extension of the default api client with required headers like a access token
     private static ApiClient getAuthorizedApiClient(ApiClient apiClient) {
-        return getDefaultApiClient(apiClient)
+        return getDefaultApiClient()
                 .addDefaultHeader("Authorization", "Bearer " + world.get().accessToken)
                 .addDefaultHeader("OtherRequiredHeader", "value");
     }

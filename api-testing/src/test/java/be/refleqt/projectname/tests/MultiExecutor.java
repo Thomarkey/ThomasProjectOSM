@@ -1,8 +1,7 @@
 package be.refleqt.projectname.tests;
 
-import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.annotations.Test;
+import org.testng.*;
+import org.testng.annotations.*;
 
 public class MultiExecutor {
 
@@ -14,6 +13,7 @@ public class MultiExecutor {
                 " --plugin json:target/cucumber-report/test.json " +
                 "--plugin html:target/cucumber-report/html " +
                 "--plugin progress " +
+                "--plugin junit:target/surefire-reports/TEST-API.xml " +
                 "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");
 

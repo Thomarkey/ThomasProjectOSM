@@ -1,13 +1,9 @@
 package be.refleqt.projectname.tests;
 
-import be.refleqt.library.selenium.CommonDataProvider;
-import be.refleqt.library.selenium.DriverProvider;
-import be.refleqt.library.selenium.driver.setup.DockerProvider;
-import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import be.refleqt.library.selenium.*;
+import be.refleqt.library.selenium.driver.setup.*;
+import org.testng.*;
+import org.testng.annotations.*;
 
 public class MultiExecutor {
 
@@ -18,7 +14,8 @@ public class MultiExecutor {
         String tag = System.getProperty("cucumberTag", "wip");
         String arg = "src/test/resources/features/ --threads " + System.getProperty("threads", "2") +
                 " --plugin json:target/cucumber-report/" + browser + ".json " +
-                "--plugin html:target/cucumber-report/html " +
+                "--plugin html:target/cucumber-report/" + browser + " " +
+                "--plugin junit:target/surefire-reports/TEST-" + browser + ".xml " +
                 "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");
         DriverProvider.setBrowser(browser);

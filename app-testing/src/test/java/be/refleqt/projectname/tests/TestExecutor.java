@@ -1,12 +1,8 @@
 package be.refleqt.projectname.tests;
 
-import be.refleqt.library.appium.CommonDataProvider;
-import be.refleqt.library.appium.DriverProvider;
-import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import be.refleqt.library.appium.*;
+import org.testng.*;
+import org.testng.annotations.*;
 
 public class TestExecutor {
 
@@ -18,7 +14,8 @@ public class TestExecutor {
         System.out.println("Running tag: " + tag);
         String arg = "src/test/resources/features/ --threads " + System.getProperty("threads", "1") +
                 " --plugin json:target/cucumber-report/" + device + ".json " +
-                "--plugin html:target/cucumber-report/html " +
+                "--plugin html:target/cucumber-report/+" + device + " " +
+                "--plugin junit:target/surefire-reports/TEST-" + device + ".xml " +
                 "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");
 
