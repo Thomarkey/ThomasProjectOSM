@@ -6,6 +6,8 @@ import be.refleqt.logger.*;
 import be.refleqt.projectname.utils.*;
 import io.restassured.*;
 
+import java.util.concurrent.*;
+
 public class ApiManager {
 
     private static ThreadLocal<World> world = new ThreadLocal<>();
@@ -29,11 +31,12 @@ public class ApiManager {
     private static ApiClient getDefaultApiClient() {
         ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(basePath);
+        apiClient.getHttpClient().setConnectTimeout(timeOut, TimeUnit.SECONDS);
         return apiClient;
     }
 
     //Extension of the default api client with required headers like a access token
-    private static ApiClient getAuthorizedApiClient(ApiClient apiClient) {
+    private static ApiClient getAuthorizedApiClient() {
         return getDefaultApiClient()
                 .addDefaultHeader("Authorization", "Bearer " + world.get().accessToken)
                 .addDefaultHeader("OtherRequiredHeader", "value");
