@@ -6,8 +6,6 @@ import be.refleqt.logger.*;
 import be.refleqt.projectname.utils.*;
 import io.restassured.*;
 
-import java.util.concurrent.*;
-
 public class ApiManager {
 
     private static ThreadLocal<World> world = new ThreadLocal<>();
@@ -31,7 +29,6 @@ public class ApiManager {
     private static ApiClient getDefaultApiClient() {
         ApiClient apiClient = new ApiClient();
         apiClient.setBasePath(basePath);
-        apiClient.getHttpClient().setConnectTimeout(timeOut, TimeUnit.SECONDS);
         return apiClient;
     }
 
