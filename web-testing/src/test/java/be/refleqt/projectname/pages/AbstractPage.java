@@ -1,11 +1,12 @@
 package be.refleqt.projectname.pages;
 
 import be.refleqt.projectname.support.*;
+import be.refleqt.selenium.support.*;
 
 /**
  * In this class you can override the already defined functions locally
  */
-public abstract class AbstractPage extends be.refleqt.library.selenium.AbstractPage {
+public abstract class AbstractPage extends GenericAbstractPage {
 
     public static ThreadLocal<World> world = new ThreadLocal<>();
 

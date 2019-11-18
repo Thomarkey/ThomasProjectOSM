@@ -12,7 +12,7 @@ public class MultiExecutor {
         String arg = "src/test/resources/features/ --threads " + System.getProperty("threads", "4") +
                 " --plugin json:target/cucumber-report/test.json " +
                 "--plugin html:target/cucumber-report/html " +
-                "--plugin progress " +
+                "--plugin be.refleqt.general.support.reportportal.agent.ScenarioReporter " +
                 "--plugin junit:target/surefire-reports/TEST-API.xml " +
                 "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");

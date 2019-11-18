@@ -1,13 +1,12 @@
 package be.refleqt.logger;
 
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.core.JsonProcessingException;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.filter.Filter;
-import io.restassured.filter.FilterContext;
-import io.restassured.http.Headers;
-import io.restassured.response.Response;
-import io.restassured.specification.FilterableRequestSpecification;
-import io.restassured.specification.FilterableResponseSpecification;
+import be.refleqt.general.support.*;
+import io.cucumber.datatable.dependency.com.fasterxml.jackson.core.*;
+import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.*;
+import io.restassured.filter.*;
+import io.restassured.http.*;
+import io.restassured.response.*;
+import io.restassured.specification.*;
 
 public class CustomLogFilter implements Filter {
 
@@ -55,7 +54,7 @@ public class CustomLogFilter implements Filter {
         }
         requestBuilder.append("\n");
 
-        ScenarioManager.getInstance().getScenario().write(requestBuilder.toString());
+        GenericScenarioManager.writeLine(requestBuilder.toString());
 
         StringBuilder responseBuilder = new StringBuilder();
 
@@ -68,8 +67,8 @@ public class CustomLogFilter implements Filter {
 
         responseBuilder.append("BODY:");
         responseBuilder.append("\n");
-        responseBuilder.append(response.getBody().prettyPrint());
-        ScenarioManager.getInstance().getScenario().write(responseBuilder.toString());
+        responseBuilder.append(response.getBody().asString());
+        GenericScenarioManager.writeLine(responseBuilder.toString());
         return response;
     }
 

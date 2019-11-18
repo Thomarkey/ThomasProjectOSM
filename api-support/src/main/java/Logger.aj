@@ -1,17 +1,11 @@
-import be.refleqt.base.test.dto.ApiException;
-import be.refleqt.base.test.dto.Pair;
-import be.refleqt.logger.ScenarioManager;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import okhttp3.Response;
-import org.apache.logging.log4j.LogManager;
-
-import java.io.File;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static java.util.Collections.emptySet;
+import be.refleqt.base.test.dto.*;
+import be.refleqt.general.support.*;
+import com.google.gson.*;
+import java.io.*;
+import static java.util.Collections.*;
+import java.util.*;
+import okhttp3.*;
+import org.apache.logging.log4j.*;
 
 public aspect Logger {
 
@@ -50,14 +44,14 @@ public aspect Logger {
             collectionQueryParamString = collectionQueryParamString + "\n\t" + collectionQueryParam.getName() + " : " + collectionQueryParam.getValue();
         }
 
-        if (ScenarioManager.getInstance().getScenario() != null) {
-            ScenarioManager.getInstance().getScenario().write("<<< REQUEST >>>" +
+        if (GenericScenarioManager.getScenario() != null) {
+            GenericScenarioManager.writeLine("\n<<< REQUEST >>>" +
                     "\nMETHOD: " + method +
                     "\nPATH: " + path +
                     "\nHEADERS: " + headerString +
                     "\nQUERY PARAMS: " + queryParamString +
                     "\nCOLLECTION QUERY PARAMS: " + collectionQueryParamString +
-                    "\nBODY: \n" + GSON.toJson(body));
+                    "\nBODY: \n" + GSON.toJson(body) + "\n");
         }
     }
 
@@ -79,11 +73,11 @@ public aspect Logger {
         if(o instanceof byte[]) {
         } else if(o instanceof File) {
         } else {
-            if (ScenarioManager.getInstance().getScenario() != null) {
-                ScenarioManager.getInstance().getScenario().write("<<< RESPONSE >>>" +
+            if (GenericScenarioManager.getScenario() != null) {
+                GenericScenarioManager.writeLine("\n<<< RESPONSE >>>" +
                         "\nCODE: " + responseCode +
                         "\nHEADERS: " + responseHeaders +
-                        "\nRESPONSE BODY: \n" + GSON.toJson(o));
+                        "\nRESPONSE BODY: \n" + GSON.toJson(o) + "\n");
             }
         }
     }
@@ -92,11 +86,11 @@ public aspect Logger {
         if(e instanceof ApiException) {
             ApiException apiException = (ApiException) e;
 
-            if (ScenarioManager.getInstance().getScenario() != null) {
-                ScenarioManager.getInstance().getScenario().write("<<< RESPONSE >>>" +
+            if (GenericScenarioManager.getScenario() != null) {
+                GenericScenarioManager.writeLine("\n<<< RESPONSE >>>" +
                         "\nRESPONSE CODE: " + responseCode +
                         "\nHEADERS: " + responseHeaders +
-                        "\nRESPONSE BODY: \n" + GSON.toJson(apiException.getResponseBody()));
+                        "\nRESPONSE BODY: \n" + GSON.toJson(apiException.getResponseBody()) + "\n");
             }
         }
     }

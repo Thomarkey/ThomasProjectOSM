@@ -1,6 +1,6 @@
 package be.refleqt.projectname.support;
 
-import be.refleqt.library.appium.GenericDataHelper;
+import be.refleqt.appium.support.*;
 
 public class DataHelper extends GenericDataHelper {
 

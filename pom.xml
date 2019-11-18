@@ -9,21 +9,21 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>general-support</module>
+        <module>api-support</module>
+        <module>web-support</module>
+        <module>app-support</module>
+        <module>api-testing</module>
         <module>web-testing</module>
         <module>app-testing</module>
-        <module>api-support</module>
-        <module>api-testing</module>
     </modules>
 
     <properties>
         <!--MAVEN DEPENDENCIES-->
-        <java.version>1.11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.dependency.analyzer.version>1.11.1</maven.dependency.analyzer.version>
-        <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
         <maven.surefire.version>3.0.0-M3</maven.surefire.version>
-        <maven.version>3.6.2</maven.version>
         <maven.dependency.version>3.1.1</maven.dependency.version>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <aspectjweaver.version>1.9.4</aspectjweaver.version>
@@ -35,42 +35,28 @@
         <cucumber.version>4.8.0</cucumber.version>
         <maven.cucumber.reporting.version>4.11.0</maven.cucumber.reporting.version>
 
-        <!--SELENIUM VERSION-->
+        <!--LIBRARY VERSION-->
         <selenium.version>3.141.59</selenium.version>
-        <refleqt.selenium.version>1.0.2-SNAPSHOT</refleqt.selenium.version>
-
-        <!--APPIUM VERSION-->
-        <refleqt.appium.version>1.0.1-SNAPSHOT</refleqt.appium.version>
+        <docker.java.version>3.1.2</docker.java.version>
+        <jodah.failsafe.version>2.0.1</jodah.failsafe.version>
+        <awaitility.version>3.1.6</awaitility.version>
+        <appium.version>7.3.0</appium.version>
+        <spring.version>5.1.8.RELEASE</spring.version>
+        <reportportal.version>4.0.4</reportportal.version>
+        <reportportal.model.version>4.0.3</reportportal.model.version>
 
         <!--ASSERTION DEPENDENCIES-->
         <assertj.version>3.13.2</assertj.version>
 
         <!--SWAGGER CLIENT DEPENDENCIES-->
         <swagger.annotations.version>1.5.24</swagger.annotations.version>
-        <jersey.version>2.29.1</jersey.version>
-        <jackson.version>2.10.0</jackson.version>
-        <jodatime.version>2.10.4</jodatime.version>
-        <google.api.client.version>1.30.5</google.api.client.version>
         <jersey.common.version>2.29.1</jersey.common.version>
-        <gson.version>2.8.6</gson.version>
         <gson.fire.version>1.8.3</gson.fire.version>
         <okhttp.version>4.2.2</okhttp.version>
         <rest.assured.version>4.1.2</rest.assured.version>
-        <hamcres.version>1.3</hamcres.version>
         <log4j.version>2.12.1</log4j.version>
         <oauth2.version>1.0.1</oauth2.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>refleqt</id>
-            <url>http://df.refleqt.be:8081/artifactory/refleqt</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <!--ASSERTION DEPENDENCIES-->
@@ -207,26 +193,6 @@
                     </systemProperties>
                     <skipTests>true</skipTests>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>enforce-maven</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>${maven.version}</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

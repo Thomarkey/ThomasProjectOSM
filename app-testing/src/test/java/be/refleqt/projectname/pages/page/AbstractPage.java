@@ -1,6 +1,6 @@
 package be.refleqt.projectname.pages.page;
 
-import be.refleqt.library.appium.GenericAbstractPage;
+import be.refleqt.appium.support.*;
 
 public class AbstractPage extends GenericAbstractPage {
 

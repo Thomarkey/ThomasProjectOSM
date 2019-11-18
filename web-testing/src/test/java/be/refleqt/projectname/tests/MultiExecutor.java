@@ -1,7 +1,8 @@
 package be.refleqt.projectname.tests;
 
-import be.refleqt.library.selenium.*;
-import be.refleqt.library.selenium.driver.setup.*;
+import be.refleqt.selenium.driver.*;
+import be.refleqt.selenium.driver.setup.*;
+import be.refleqt.selenium.support.*;
 import org.testng.*;
 import org.testng.annotations.*;
 
@@ -16,6 +17,8 @@ public class MultiExecutor {
                 " --plugin json:target/cucumber-report/" + browser + ".json " +
                 "--plugin html:target/cucumber-report/" + browser + " " +
                 "--plugin junit:target/surefire-reports/TEST-" + browser + ".xml " +
+                "--plugin be.refleqt.general.support.reportportal.agent.ScenarioReporter " +
+                "--plugin progress " +
                 "-t @" + tag + " --strict --glue be.refleqt.projectname.steps";
         String[] args = arg.split(" ");
         DriverProvider.setBrowser(browser);

@@ -1,6 +1,7 @@
 package be.refleqt.projectname.steps;
 
 import be.refleqt.base.test.dto.model.*;
+import be.refleqt.general.support.*;
 import be.refleqt.logger.*;
 import be.refleqt.projectname.support.*;
 import be.refleqt.projectname.transformers.*;
@@ -28,7 +29,7 @@ public class CommonSteps {
 
     @Before
     public void before(Scenario scenario) {
-        ScenarioManager.getInstance().setScenario(scenario);
+        GenericScenarioManager.setScenario(scenario);
         ApiManager.setupRestAssured();
     }
 

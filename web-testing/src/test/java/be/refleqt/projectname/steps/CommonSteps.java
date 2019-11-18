@@ -1,8 +1,9 @@
 package be.refleqt.projectname.steps;
 
-import be.refleqt.library.selenium.*;
 import be.refleqt.projectname.pages.*;
 import be.refleqt.projectname.support.*;
+import be.refleqt.selenium.driver.*;
+import be.refleqt.selenium.support.*;
 import io.cucumber.core.api.*;
 import io.cucumber.java.*;
 import io.cucumber.java.en.*;
@@ -19,6 +20,7 @@ public class CommonSteps {
     public void beforeScenario(Scenario scenario) {
         ScenarioManager.setScenario(scenario);
         DriverProvider.setUpDriver();
+        ScenarioManager.writeLine("modifyTag:" + DriverProvider.getBrowser());
     }
 
     @After

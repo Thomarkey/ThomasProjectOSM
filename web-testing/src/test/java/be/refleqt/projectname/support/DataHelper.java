@@ -1,6 +1,6 @@
 package be.refleqt.projectname.support;
 
-import static be.refleqt.library.selenium.DataHelper.getInvalid;
+import static be.refleqt.selenium.support.DataHelper.*;
 
 /**
  *  DataHelper that imports a Generic DataHelper.

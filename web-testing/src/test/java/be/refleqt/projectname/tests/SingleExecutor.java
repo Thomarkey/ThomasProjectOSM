@@ -1,16 +1,17 @@
 package be.refleqt.projectname.tests;
 
-import be.refleqt.library.selenium.driver.setup.DockerProvider;
-import io.cucumber.testng.AbstractTestNGCucumberTests;
-import io.cucumber.testng.CucumberOptions;
-import io.cucumber.testng.CucumberOptions.SnippetType;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import be.refleqt.selenium.driver.setup.*;
+import io.cucumber.testng.*;
+import io.cucumber.testng.CucumberOptions.*;
+import org.testng.annotations.*;
 
 @CucumberOptions(
         features = "src/test/resources/features/",
         glue = "be.refleqt.projectname.steps",
-        plugin = {"pretty", "json:target/cucumber/json/full.json", "html:target/cucumber/html/full/"},
+        plugin = {
+                "progress", "json:target/cucumber/json/full.json", "html:target/cucumber/html/full/",
+                "be.refleqt.general.support.reportportal.agent.ScenarioReporter"
+        },
         strict = true,
         snippets = SnippetType.CAMELCASE
 )

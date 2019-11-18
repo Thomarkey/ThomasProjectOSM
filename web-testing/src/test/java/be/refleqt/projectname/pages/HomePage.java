@@ -1,6 +1,6 @@
 package be.refleqt.projectname.pages;
 
-import be.refleqt.library.selenium.driver.element.*;
+import be.refleqt.selenium.driver.element.*;
 import org.openqa.selenium.support.*;
 
 public class HomePage extends AbstractPage {
