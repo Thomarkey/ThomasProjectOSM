@@ -1,7 +1,7 @@
 package be.refleqt.selenium.driver.setup.DriverManagers;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverManager {
 

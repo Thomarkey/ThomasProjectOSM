@@ -3,9 +3,8 @@ package be.refleqt.projectname.pages.widget;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.Widget;
-import org.openqa.selenium.WebElement;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import org.openqa.selenium.WebElement;
 
 @AndroidFindBy(id = "taskList")
 public class Task extends Widget {

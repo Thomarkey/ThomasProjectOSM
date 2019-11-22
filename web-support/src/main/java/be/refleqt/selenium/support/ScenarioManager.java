@@ -1,7 +1,7 @@
 package be.refleqt.selenium.support;
 
-import be.refleqt.general.support.*;
-import be.refleqt.selenium.driver.*;
+import be.refleqt.general.support.GenericScenarioManager;
+import be.refleqt.selenium.driver.DriverProvider;
 
 public class ScenarioManager extends GenericScenarioManager {
 

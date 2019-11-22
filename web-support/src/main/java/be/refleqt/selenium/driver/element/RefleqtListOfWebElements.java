@@ -1,15 +1,15 @@
 package be.refleqt.selenium.driver.element;
 
-import java.util.*;
-import java.util.concurrent.*;
-import net.jodah.failsafe.*;
-import org.apache.commons.lang.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.awaitility.Awaitility.*;
-import static org.hamcrest.Matchers.*;
-import org.openqa.selenium.NoSuchElementException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import net.jodah.failsafe.Failsafe;
+import org.apache.commons.lang.StringUtils;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
+import static org.hamcrest.Matchers.greaterThan;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.pagefactory.*;
+import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
 

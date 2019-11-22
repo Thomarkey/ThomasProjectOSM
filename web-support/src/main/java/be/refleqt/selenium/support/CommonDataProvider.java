@@ -1,7 +1,8 @@
 package be.refleqt.selenium.support;
 
-import java.util.*;
-import org.testng.annotations.*;
+import java.util.ArrayList;
+import java.util.List;
+import org.testng.annotations.DataProvider;
 
 public class CommonDataProvider {
 

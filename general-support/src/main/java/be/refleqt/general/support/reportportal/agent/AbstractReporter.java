@@ -15,25 +15,31 @@
  */
 package be.refleqt.general.support.reportportal.agent;
 
-import com.epam.reportportal.listeners.*;
-import com.epam.reportportal.service.*;
-import com.epam.reportportal.utils.properties.*;
-import com.epam.ta.reportportal.ws.model.*;
-import com.epam.ta.reportportal.ws.model.launch.*;
-import com.epam.ta.reportportal.ws.model.log.*;
+import com.epam.reportportal.listeners.ListenerParameters;
+import com.epam.reportportal.service.Launch;
+import com.epam.reportportal.service.ReportPortal;
+import com.epam.reportportal.utils.properties.PropertiesLoader;
+import com.epam.ta.reportportal.ws.model.FinishExecutionRQ;
+import com.epam.ta.reportportal.ws.model.StartTestItemRQ;
+import com.epam.ta.reportportal.ws.model.launch.StartLaunchRQ;
+import com.epam.ta.reportportal.ws.model.log.SaveLogRQ;
 import cucumber.api.*;
 import cucumber.api.event.*;
-import gherkin.deps.com.google.gson.*;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.*;
-import io.reactivex.*;
-import static io.restassured.RestAssured.*;
-import io.restassured.http.*;
-import io.restassured.response.*;
-import java.io.*;
+import gherkin.deps.com.google.gson.Gson;
+import gherkin.deps.com.google.gson.JsonObject;
+import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.JsonNode;
+import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
+import io.reactivex.Maybe;
+import static io.restassured.RestAssured.given;
+import io.restassured.http.ContentType;
+import io.restassured.http.Header;
+import io.restassured.response.Response;
+import java.io.IOException;
 import java.util.*;
-import org.apache.commons.lang3.*;
-import org.apache.commons.lang3.tuple.*;
-import rp.com.google.common.base.*;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import rp.com.google.common.base.Supplier;
+import rp.com.google.common.base.Suppliers;
 
 /**
  * Abstract Cucumber 4.x formatter for Report Portal

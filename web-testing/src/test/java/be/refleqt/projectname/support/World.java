@@ -1,6 +1,6 @@
 package be.refleqt.projectname.support;
 
-import be.refleqt.projectname.pages.*;
+import be.refleqt.projectname.pages.AbstractPage;
 
 public class World {
     public World() {

@@ -1,7 +1,7 @@
 package be.refleqt.appium.driver;
 
-import be.refleqt.appium.support.*;
-import io.appium.java_client.events.api.general.*;
+import be.refleqt.appium.support.ScenarioManager;
+import io.appium.java_client.events.api.general.AppiumWebDriverEventListener;
 import org.openqa.selenium.*;
 
 public class CustomAppiumEventDriverListener implements AppiumWebDriverEventListener {

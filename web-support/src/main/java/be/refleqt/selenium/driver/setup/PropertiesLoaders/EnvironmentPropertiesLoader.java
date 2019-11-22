@@ -1,10 +1,11 @@
 package be.refleqt.selenium.driver.setup.PropertiesLoaders;
 
-import be.refleqt.selenium.driver.setup.enums.*;
-import java.io.*;
-import java.util.*;
-import org.springframework.core.io.*;
-import org.testng.*;
+import be.refleqt.selenium.driver.setup.enums.EnvironmentType;
+import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
+import org.springframework.core.io.ClassPathResource;
+import org.testng.Assert;
 
 public class EnvironmentPropertiesLoader {
 

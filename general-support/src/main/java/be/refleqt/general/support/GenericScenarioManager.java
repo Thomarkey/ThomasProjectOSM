@@ -1,6 +1,6 @@
 package be.refleqt.general.support;
 
-import io.cucumber.core.api.*;
+import io.cucumber.core.api.Scenario;
 
 public class GenericScenarioManager {
 

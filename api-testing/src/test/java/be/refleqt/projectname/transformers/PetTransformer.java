@@ -1,10 +1,9 @@
 package be.refleqt.projectname.transformers;
 
-import be.refleqt.base.test.dto.model.*;
-import be.refleqt.projectname.utils.*;
-import io.cucumber.datatable.*;
-
-import java.util.*;
+import be.refleqt.base.test.dto.model.Pet;
+import be.refleqt.projectname.utils.DataHelper;
+import io.cucumber.datatable.TableEntryTransformer;
+import java.util.Map;
 
 public class PetTransformer implements TableEntryTransformer<Pet> {
     @Override

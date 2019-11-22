@@ -1,21 +1,22 @@
 package be.refleqt.appium.support;
 
-import be.refleqt.appium.driver.*;
+import be.refleqt.appium.driver.DriverProvider;
 import io.appium.java_client.*;
-import io.appium.java_client.pagefactory.*;
-import io.appium.java_client.touch.*;
-import static io.appium.java_client.touch.offset.PointOption.*;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.touch.WaitOptions;
+import static io.appium.java_client.touch.offset.PointOption.point;
 import java.util.NoSuchElementException;
 import java.util.*;
-import java.util.concurrent.*;
-import net.jodah.failsafe.*;
-import org.apache.commons.lang3.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.awaitility.Awaitility.*;
-import org.awaitility.*;
-import org.awaitility.core.*;
+import java.util.concurrent.TimeUnit;
+import net.jodah.failsafe.Failsafe;
+import net.jodah.failsafe.RetryPolicy;
+import org.apache.commons.lang3.StringUtils;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
+import org.awaitility.Duration;
+import org.awaitility.core.ConditionTimeoutException;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.*;
+import org.openqa.selenium.support.PageFactory;
 
 public abstract class GenericAbstractPage {
     protected final AppiumDriver driver;

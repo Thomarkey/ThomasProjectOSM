@@ -1,17 +1,20 @@
 package be.refleqt.appium.driver.setup.DriverManagers;
 
-import be.refleqt.appium.driver.setup.PropertiesLoaders.*;
-import be.refleqt.appium.driver.setup.enums.*;
-import be.refleqt.appium.support.*;
-import io.appium.java_client.*;
-import io.appium.java_client.android.*;
-import io.appium.java_client.ios.*;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.*;
-import static io.restassured.RestAssured.*;
-import java.io.*;
-import java.net.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
+import be.refleqt.appium.driver.setup.PropertiesLoaders.EnvironmentPropertiesLoader;
+import be.refleqt.appium.driver.setup.enums.EnvironmentType;
+import be.refleqt.appium.support.ScenarioManager;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
+import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.JsonNode;
+import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
+import static io.restassured.RestAssured.given;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class RemoteDriverManager extends DriverManager {
 

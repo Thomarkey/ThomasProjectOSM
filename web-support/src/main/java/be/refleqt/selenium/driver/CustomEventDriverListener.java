@@ -1,8 +1,8 @@
 package be.refleqt.selenium.driver;
 
-import be.refleqt.selenium.support.*;
+import be.refleqt.selenium.support.ScenarioManager;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.events.*;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 
 public class CustomEventDriverListener implements WebDriverEventListener {
     @Override

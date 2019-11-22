@@ -1,11 +1,12 @@
 package be.refleqt.projectname.steps;
 
-import be.refleqt.projectname.pages.*;
-import be.refleqt.projectname.support.*;
-import be.refleqt.selenium.driver.*;
-import be.refleqt.selenium.support.*;
-import io.cucumber.core.api.*;
-import io.cucumber.java.*;
+import be.refleqt.projectname.pages.HomePage;
+import be.refleqt.projectname.support.World;
+import be.refleqt.selenium.driver.DriverProvider;
+import be.refleqt.selenium.support.ScenarioManager;
+import io.cucumber.core.api.Scenario;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 
 public class CommonSteps {

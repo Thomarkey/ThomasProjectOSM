@@ -1,20 +1,22 @@
 package be.refleqt.projectname.steps;
 
-import be.refleqt.base.test.dto.model.*;
-import be.refleqt.general.support.*;
-import be.refleqt.logger.*;
+import be.refleqt.base.test.dto.model.Pet;
+import be.refleqt.general.support.GenericScenarioManager;
+import be.refleqt.logger.JsonNodeHelper;
 import be.refleqt.projectname.support.*;
-import be.refleqt.projectname.transformers.*;
-import be.refleqt.projectname.utils.*;
-import com.fasterxml.jackson.databind.*;
-import io.cucumber.core.api.*;
-import io.cucumber.java.*;
-import io.cucumber.java.en.*;
-import static io.restassured.RestAssured.*;
-import io.restassured.http.*;
-import io.restassured.response.*;
+import be.refleqt.projectname.transformers.Color;
+import be.refleqt.projectname.utils.World;
+import com.fasterxml.jackson.databind.JsonNode;
+import io.cucumber.core.api.Scenario;
+import io.cucumber.java.Before;
+import io.cucumber.java.Transpose;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import static io.restassured.RestAssured.given;
+import io.restassured.http.Header;
+import io.restassured.response.Response;
 import java.util.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CommonSteps {
 

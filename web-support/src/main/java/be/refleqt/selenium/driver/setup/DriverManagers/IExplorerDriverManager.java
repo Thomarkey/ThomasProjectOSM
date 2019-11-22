@@ -1,8 +1,9 @@
 package be.refleqt.selenium.driver.setup.DriverManagers;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.ie.*;
-import org.openqa.selenium.remote.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class IExplorerDriverManager extends DriverManager {
 

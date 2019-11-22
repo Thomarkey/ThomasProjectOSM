@@ -1,7 +1,7 @@
 package be.refleqt.projectname.utils;
 
-import be.refleqt.base.test.dto.*;
-import be.refleqt.base.test.dto.model.*;
+import be.refleqt.base.test.dto.ApiException;
+import be.refleqt.base.test.dto.model.Pet;
 import be.refleqt.projectname.support.*;
 
 public class World {

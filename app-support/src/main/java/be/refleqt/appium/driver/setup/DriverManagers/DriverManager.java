@@ -1,12 +1,12 @@
 package be.refleqt.appium.driver.setup.DriverManagers;
 
-import be.refleqt.appium.driver.*;
-import be.refleqt.appium.driver.setup.util.*;
-import be.refleqt.appium.support.*;
-import io.appium.java_client.*;
-import io.appium.java_client.android.*;
-import io.appium.java_client.ios.*;
-import org.openqa.selenium.remote.*;
+import be.refleqt.appium.driver.DriverProvider;
+import be.refleqt.appium.driver.setup.util.DeviceManager;
+import be.refleqt.appium.support.GenericDataHelper;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverManager {
 

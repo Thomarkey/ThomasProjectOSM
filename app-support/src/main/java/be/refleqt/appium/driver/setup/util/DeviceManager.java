@@ -1,12 +1,13 @@
 package be.refleqt.appium.driver.setup.util;
 
-import be.refleqt.appium.driver.*;
-import io.appium.java_client.android.*;
+import be.refleqt.appium.driver.DriverProvider;
+import io.appium.java_client.android.AndroidDriver;
 import java.io.*;
-import java.util.*;
-import java.util.concurrent.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DeviceManager {
 

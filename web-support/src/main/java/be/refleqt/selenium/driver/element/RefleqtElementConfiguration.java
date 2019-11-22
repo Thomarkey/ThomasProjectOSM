@@ -1,9 +1,10 @@
 package be.refleqt.selenium.driver.element;
 
-import be.refleqt.selenium.support.*;
-import java.time.*;
-import java.util.*;
-import net.jodah.failsafe.*;
+import be.refleqt.selenium.support.JSWaiter;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import net.jodah.failsafe.RetryPolicy;
 import org.openqa.selenium.*;
 
 public class RefleqtElementConfiguration {

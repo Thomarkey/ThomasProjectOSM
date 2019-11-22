@@ -1,8 +1,9 @@
 package be.refleqt.selenium.driver.setup.DriverManagers;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
-import org.openqa.selenium.safari.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
 public class SafariDriverManager extends DriverManager {
 

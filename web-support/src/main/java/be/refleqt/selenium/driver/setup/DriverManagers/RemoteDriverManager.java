@@ -1,11 +1,14 @@
 package be.refleqt.selenium.driver.setup.DriverManagers;
 
-import be.refleqt.selenium.driver.setup.PropertiesLoaders.*;
+import be.refleqt.selenium.driver.setup.PropertiesLoaders.EnvironmentPropertiesLoader;
 import be.refleqt.selenium.driver.setup.enums.BrowserType;
-import be.refleqt.selenium.support.*;
-import java.net.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
+import be.refleqt.selenium.support.ScenarioManager;
+import java.net.MalformedURLException;
+import java.net.URL;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class RemoteDriverManager extends DriverManager {
 

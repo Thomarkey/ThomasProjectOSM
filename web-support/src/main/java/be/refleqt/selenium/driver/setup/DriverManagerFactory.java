@@ -2,9 +2,9 @@ package be.refleqt.selenium.driver.setup;
 
 import be.refleqt.selenium.driver.setup.DriverManagers.*;
 import be.refleqt.selenium.driver.setup.enums.BrowserType;
-import be.refleqt.selenium.driver.setup.enums.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
+import be.refleqt.selenium.driver.setup.enums.EnvironmentType;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverManagerFactory {
 

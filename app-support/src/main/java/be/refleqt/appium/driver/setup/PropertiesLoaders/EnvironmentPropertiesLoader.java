@@ -1,11 +1,12 @@
 package be.refleqt.appium.driver.setup.PropertiesLoaders;
 
-import be.refleqt.appium.driver.setup.enums.*;
-import java.io.*;
-import java.util.*;
-import static org.assertj.core.api.Assertions.*;
-import org.openqa.selenium.remote.*;
-import org.springframework.core.io.*;
+import be.refleqt.appium.driver.setup.enums.EnvironmentType;
+import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.core.io.ClassPathResource;
 
 public class EnvironmentPropertiesLoader {
 

@@ -61,6 +61,11 @@
             <artifactId>org.apache.oltu.oauth2.client</artifactId>
             <version>${oauth2.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

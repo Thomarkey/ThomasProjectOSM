@@ -1,9 +1,10 @@
 package be.refleqt.selenium.support;
 
-import be.refleqt.selenium.driver.*;
-import java.util.concurrent.*;
-import org.awaitility.*;
-import org.openqa.selenium.*;
+import be.refleqt.selenium.driver.DriverProvider;
+import java.util.concurrent.TimeUnit;
+import org.awaitility.Awaitility;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 
 public class JSWaiter {
 

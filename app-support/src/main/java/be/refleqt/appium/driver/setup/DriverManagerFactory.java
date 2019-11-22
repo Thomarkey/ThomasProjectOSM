@@ -1,9 +1,10 @@
 package be.refleqt.appium.driver.setup;
 
-import be.refleqt.appium.driver.setup.DriverManagers.*;
-import be.refleqt.appium.driver.setup.enums.*;
-import io.appium.java_client.*;
-import org.openqa.selenium.remote.*;
+import be.refleqt.appium.driver.setup.DriverManagers.DriverManager;
+import be.refleqt.appium.driver.setup.DriverManagers.RemoteDriverManager;
+import be.refleqt.appium.driver.setup.enums.EnvironmentType;
+import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverManagerFactory {
 

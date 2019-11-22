@@ -1,11 +1,14 @@
 package be.refleqt.selenium.driver.element;
 
-import java.lang.reflect.*;
-import static java.lang.reflect.Proxy.*;
-import java.util.*;
-import org.openqa.selenium.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import static java.lang.reflect.Proxy.newProxyInstance;
+import java.util.List;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.*;
-import org.openqa.selenium.support.pagefactory.internal.*;
+import org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler;
+import org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler;
 
 public class RefleqtWebFieldDecorator implements FieldDecorator {
     protected ElementLocatorFactory factory;

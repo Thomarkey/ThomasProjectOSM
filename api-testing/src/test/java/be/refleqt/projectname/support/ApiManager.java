@@ -1,10 +1,10 @@
 package be.refleqt.projectname.support;
 
-import be.refleqt.base.test.dto.*;
-import be.refleqt.base.test.dto.api.*;
-import be.refleqt.logger.*;
-import be.refleqt.projectname.utils.*;
-import io.restassured.*;
+import be.refleqt.base.test.dto.ApiClient;
+import be.refleqt.base.test.dto.api.PetApi;
+import be.refleqt.logger.CustomLogFilter;
+import be.refleqt.projectname.utils.World;
+import io.restassured.RestAssured;
 
 public class ApiManager {
 

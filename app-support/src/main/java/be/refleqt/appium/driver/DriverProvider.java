@@ -1,20 +1,23 @@
 package be.refleqt.appium.driver;
 
-import be.refleqt.appium.driver.setup.*;
-import be.refleqt.appium.driver.setup.PropertiesLoaders.*;
-import io.appium.java_client.*;
-import io.appium.java_client.events.*;
-import io.appium.java_client.service.local.*;
-import io.appium.java_client.service.local.flags.*;
+import be.refleqt.appium.driver.setup.DriverManagerFactory;
+import be.refleqt.appium.driver.setup.PropertiesLoaders.CapabilitiesLoader;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.events.EventFiringWebDriverFactory;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import java.net.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.*;
-import javax.imageio.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
+import javax.imageio.ImageIO;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverProvider {
 
@@ -89,7 +92,6 @@ public class DriverProvider {
         );
     }
 
-
     private static byte[] getScreenshot() {
         if (shouldEnableScreenshot()) {
             return ((TakesScreenshot) driver.get()).getScreenshotAs(OutputType.BYTES);
@@ -97,7 +99,6 @@ public class DriverProvider {
             return null;
         }
     }
-
 
     public static AppiumDriver getDriver() {
         return driver.get();

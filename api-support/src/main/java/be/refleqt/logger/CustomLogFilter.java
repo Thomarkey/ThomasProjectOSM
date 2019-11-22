@@ -1,12 +1,14 @@
 package be.refleqt.logger;
 
-import be.refleqt.general.support.*;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.core.*;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.*;
-import io.restassured.filter.*;
-import io.restassured.http.*;
-import io.restassured.response.*;
-import io.restassured.specification.*;
+import be.refleqt.general.support.GenericScenarioManager;
+import io.cucumber.datatable.dependency.com.fasterxml.jackson.core.JsonProcessingException;
+import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.filter.Filter;
+import io.restassured.filter.FilterContext;
+import io.restassured.http.Headers;
+import io.restassured.response.Response;
+import io.restassured.specification.FilterableRequestSpecification;
+import io.restassured.specification.FilterableResponseSpecification;
 
 public class CustomLogFilter implements Filter {
 

@@ -15,9 +15,10 @@
  */
 package be.refleqt.general.support.reportportal.agent;
 
-import cucumber.api.*;
-import gherkin.ast.*;
-import io.reactivex.*;
+import cucumber.api.Result;
+import cucumber.api.TestStep;
+import gherkin.ast.Step;
+import io.reactivex.Maybe;
 
 public class ScenarioReporter extends AbstractReporter {
 

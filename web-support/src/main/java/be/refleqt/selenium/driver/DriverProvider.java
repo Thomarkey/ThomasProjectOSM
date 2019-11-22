@@ -1,18 +1,19 @@
 package be.refleqt.selenium.driver;
 
-import be.refleqt.selenium.driver.setup.*;
+import be.refleqt.selenium.driver.setup.DriverManagerFactory;
 import be.refleqt.selenium.driver.setup.enums.BrowserType;
-import be.refleqt.selenium.driver.setup.enums.*;
+import be.refleqt.selenium.driver.setup.enums.EnvironmentType;
 import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.*;
-import javax.imageio.*;
+import javax.imageio.ImageIO;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
-import org.openqa.selenium.support.events.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 public class DriverProvider {
 

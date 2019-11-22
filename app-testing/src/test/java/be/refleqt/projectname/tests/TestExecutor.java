@@ -1,8 +1,9 @@
 package be.refleqt.projectname.tests;
 
-import be.refleqt.appium.driver.*;
-import be.refleqt.appium.support.*;
-import org.testng.*;
+import be.refleqt.appium.driver.DriverProvider;
+import be.refleqt.appium.support.CommonDataProvider;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 public class TestExecutor {

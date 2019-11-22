@@ -1,7 +1,8 @@
 package be.refleqt.projectname.pages;
 
-import be.refleqt.projectname.support.*;
-import be.refleqt.selenium.support.*;
+import be.refleqt.projectname.support.PropertiesReader;
+import be.refleqt.projectname.support.World;
+import be.refleqt.selenium.support.GenericAbstractPage;
 
 /**
  * In this class you can override the already defined functions locally

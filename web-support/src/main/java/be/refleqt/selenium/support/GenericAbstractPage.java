@@ -1,10 +1,11 @@
 package be.refleqt.selenium.support;
 
-import be.refleqt.selenium.driver.*;
-import be.refleqt.selenium.driver.element.*;
-import static org.assertj.core.api.Assertions.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.*;
+import be.refleqt.selenium.driver.DriverProvider;
+import be.refleqt.selenium.driver.element.RefleqtElementConfiguration;
+import be.refleqt.selenium.driver.element.RefleqtWebFieldDecorator;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public abstract class GenericAbstractPage {
 

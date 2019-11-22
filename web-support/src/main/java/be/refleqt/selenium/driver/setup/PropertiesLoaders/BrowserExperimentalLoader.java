@@ -1,11 +1,13 @@
 package be.refleqt.selenium.driver.setup.PropertiesLoaders;
 
-import be.refleqt.selenium.driver.*;
-import java.io.*;
-import java.util.*;
-import java.util.stream.*;
-import org.springframework.core.io.*;
-import org.testng.*;
+import be.refleqt.selenium.driver.DriverProvider;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
+import java.util.stream.Collectors;
+import org.springframework.core.io.ClassPathResource;
+import org.testng.Assert;
 
 public class BrowserExperimentalLoader {
 

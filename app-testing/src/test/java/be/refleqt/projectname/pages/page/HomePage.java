@@ -3,7 +3,6 @@ package be.refleqt.projectname.pages.page;
 import be.refleqt.projectname.pages.widget.Task;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-
 import java.util.List;
 
 public class HomePage extends AbstractPage {

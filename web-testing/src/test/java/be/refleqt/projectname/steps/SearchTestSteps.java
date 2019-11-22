@@ -2,7 +2,6 @@ package be.refleqt.projectname.steps;
 
 import be.refleqt.projectname.support.World;
 import io.cucumber.java.en.And;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class SearchTestSteps {

@@ -1,7 +1,7 @@
 package be.refleqt.appium.support;
 
-import be.refleqt.appium.driver.*;
-import be.refleqt.general.support.*;
+import be.refleqt.appium.driver.DriverProvider;
+import be.refleqt.general.support.GenericScenarioManager;
 
 public class ScenarioManager extends GenericScenarioManager {
 

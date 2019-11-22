@@ -15,19 +15,21 @@
  */
 package be.refleqt.general.support.reportportal.agent;
 
-import com.epam.reportportal.listeners.*;
-import com.epam.reportportal.service.*;
-import com.epam.ta.reportportal.ws.model.*;
-import com.epam.ta.reportportal.ws.model.log.*;
-import com.epam.ta.reportportal.ws.model.log.SaveLogRQ.*;
+import com.epam.reportportal.listeners.Statuses;
+import com.epam.reportportal.service.Launch;
+import com.epam.reportportal.service.ReportPortal;
+import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
+import com.epam.ta.reportportal.ws.model.StartTestItemRQ;
+import com.epam.ta.reportportal.ws.model.log.SaveLogRQ;
+import com.epam.ta.reportportal.ws.model.log.SaveLogRQ.File;
 import cucumber.api.*;
-import gherkin.ast.*;
+import gherkin.ast.Tag;
 import gherkin.pickles.Argument;
 import gherkin.pickles.*;
-import io.reactivex.*;
+import io.reactivex.Maybe;
 import java.util.*;
-import rp.com.google.common.base.*;
-import rp.com.google.common.collect.*;
+import rp.com.google.common.base.Function;
+import rp.com.google.common.collect.ImmutableMap;
 
 public class Utils {
 

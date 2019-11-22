@@ -1,17 +1,17 @@
 package be.refleqt.selenium.driver.element;
 
-import be.refleqt.selenium.support.*;
+import be.refleqt.selenium.support.ScenarioManager;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.stream.*;
-import net.jodah.failsafe.*;
-import org.apache.commons.lang.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.awaitility.Awaitility.*;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import net.jodah.failsafe.Failsafe;
+import org.apache.commons.lang.StringUtils;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.awaitility.Awaitility.await;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.*;
-import org.openqa.selenium.support.pagefactory.*;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.pagefactory.ElementLocator;
+import org.openqa.selenium.support.ui.Select;
 
 public class RefleqtWebElement extends RefleqtElementConfiguration implements WebElement {
 

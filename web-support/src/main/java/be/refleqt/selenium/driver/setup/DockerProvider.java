@@ -1,16 +1,18 @@
 package be.refleqt.selenium.driver.setup;
 
-import be.refleqt.selenium.driver.*;
-import be.refleqt.selenium.driver.setup.enums.*;
-import be.refleqt.selenium.support.*;
-import com.github.dockerjava.api.*;
-import com.github.dockerjava.api.command.*;
+import be.refleqt.selenium.driver.DriverProvider;
+import be.refleqt.selenium.driver.setup.enums.EnvironmentType;
+import be.refleqt.selenium.support.ResponseHandler;
+import com.github.dockerjava.api.DockerClient;
+import com.github.dockerjava.api.command.CreateContainerResponse;
 import com.github.dockerjava.api.model.*;
 import com.github.dockerjava.core.*;
-import com.github.dockerjava.core.command.*;
+import com.github.dockerjava.core.command.PullImageResultCallback;
 import java.util.*;
-import org.apache.commons.lang.*;
-import org.awaitility.*;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
+import org.awaitility.Awaitility;
+import org.awaitility.Duration;
 
 public class DockerProvider {
 

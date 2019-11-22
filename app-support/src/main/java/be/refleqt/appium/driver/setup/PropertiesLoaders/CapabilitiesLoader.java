@@ -1,10 +1,11 @@
 package be.refleqt.appium.driver.setup.PropertiesLoaders;
 
-import java.io.*;
-import java.util.*;
-import org.apache.commons.lang3.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.*;
+import java.io.File;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class CapabilitiesLoader {
 

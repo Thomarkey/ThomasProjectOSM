@@ -3,7 +3,6 @@ package be.refleqt.projectname.support;
 import be.refleqt.base.test.dto.ApiException;
 import be.refleqt.base.test.dto.ApiResponse;
 import be.refleqt.projectname.utils.World;
-
 import java.util.concurrent.Callable;
 
 public final class ApiCaller {

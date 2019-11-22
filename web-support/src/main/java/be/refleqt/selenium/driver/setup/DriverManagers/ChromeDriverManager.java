@@ -1,10 +1,12 @@
 package be.refleqt.selenium.driver.setup.DriverManagers;
 
-import be.refleqt.selenium.driver.setup.PropertiesLoaders.*;
-import java.util.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.remote.*;
+import be.refleqt.selenium.driver.setup.PropertiesLoaders.BrowserExperimentalLoader;
+import be.refleqt.selenium.driver.setup.PropertiesLoaders.BrowserPropertiesLoader;
+import java.util.Map;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class ChromeDriverManager extends DriverManager {
 

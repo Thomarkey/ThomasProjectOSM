@@ -1,9 +1,10 @@
 package be.refleqt.projectname.tests;
 
-import be.refleqt.selenium.driver.*;
-import be.refleqt.selenium.driver.setup.*;
-import be.refleqt.selenium.support.*;
-import org.testng.*;
+import be.refleqt.selenium.driver.DriverProvider;
+import be.refleqt.selenium.driver.setup.DockerProvider;
+import be.refleqt.selenium.support.CommonDataProvider;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 public class MultiExecutor {

@@ -1,7 +1,7 @@
 package be.refleqt.selenium.support;
 
-import static io.restassured.RestAssured.*;
-import io.restassured.http.*;
+import static io.restassured.RestAssured.given;
+import io.restassured.http.Header;
 
 public class ResponseHandler {
 
