@@ -57,6 +57,7 @@
         <log4j.version>2.12.1</log4j.version>
         <oauth2.version>1.0.1</oauth2.version>
         <jackson.version>2.10.0</jackson.version>
+        <okio.version>2.2.2</okio.version>
     </properties>
 
     <dependencies>
