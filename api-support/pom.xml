@@ -130,7 +130,7 @@
                             <inputSpec>${project.build.directory}/first.json</inputSpec>
 
                             <!-- target to generate java client code -->
-                            <language>java</language>
+                            <generatorName>java</generatorName>
 
                             <generateApiTests>false</generateApiTests>
                             <generateModelTests>false</generateModelTests>
@@ -158,7 +158,7 @@
 <!--                            <inputSpec>${project.build.directory}/second.json</inputSpec>-->
 
 <!--                            &lt;!&ndash; target to generate java client code &ndash;&gt;-->
-<!--                            <language>java</language>-->
+<!--                            <generatorName>java</generatorName>-->
 
 <!--                            <generateApiTests>false</generateApiTests>-->
 <!--                            <generateModelTests>false</generateModelTests>-->

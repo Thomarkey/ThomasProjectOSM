@@ -86,7 +86,7 @@ public aspect Logger {
     pointcut handleResponse() : execution(* be..dto.ApiClient.handleResponse(..))
             || execution(* com..dto.ApiClient.handleResponse(..)) || execution(* eu..dto.ApiClient.handleResponse(..));
 
-    before(): handleResponse() {
+    before() : handleResponse() {
         Object[] args = thisJoinPoint.getArgs();
         responsePrint.set(new StringBuilder());
         Response response = (Response) args[0];
