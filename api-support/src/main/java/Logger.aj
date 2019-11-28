@@ -1,9 +1,10 @@
-import be.refleqt.base.test.dto.*;
-import be.refleqt.general.support.GenericScenarioManager;
-import be.refleqt.logger.JsonNodeHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import country.customer.project.general.support.GenericScenarioManager;
+import country.customer.project.logger.JsonNodeHelper;
+import country.customer.project.test.dto.*;
 import java.io.File;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import okhttp3.Response;
@@ -24,7 +25,7 @@ public aspect Logger {
     private static final String CYAN_BOLD = "\033[1;36m";   // CYAN
 
     pointcut buildCall() : execution(* be..dto.ApiClient.buildCall(..)) || execution(* com..dto.ApiClient.buildCall(..))
-            || execution(* eu..dto.ApiClient.buildCall(..));
+            || execution(* eu..dto.ApiClient.buildCall(..)) || execution(* country..dto.ApiClient.buildCall(..));
 
     static {
         LOGGER = LogManager.getLogger(Logger.class);
@@ -52,7 +53,8 @@ public aspect Logger {
         }
 
         request.append("\nMETHOD: ").append((String) args[1])
-                .append("\nPATH: ").append(apiClient.getBasePath()).append((String) args[0]);
+                .append("\nPATH: ").append(apiClient.getBasePath()).append((String) args[0])
+                .append("\nTIME: ").append(OffsetDateTime.now());
 
         if (headerParams.size() > 0) {
             request.append("\nHEADERS: ");
@@ -84,7 +86,8 @@ public aspect Logger {
     }
 
     pointcut handleResponse() : execution(* be..dto.ApiClient.handleResponse(..))
-            || execution(* com..dto.ApiClient.handleResponse(..)) || execution(* eu..dto.ApiClient.handleResponse(..));
+            || execution(* com..dto.ApiClient.handleResponse(..)) || execution(* eu..dto.ApiClient.handleResponse(..))
+            || execution(* country..dto.ApiClient.handleResponse(..));
 
     before() : handleResponse() {
         Object[] args = thisJoinPoint.getArgs();

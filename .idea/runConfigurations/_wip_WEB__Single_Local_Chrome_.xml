@@ -3,13 +3,13 @@
     <module name="web-testing" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="be.refleqt.projectname.tests.*" />
+        <option name="PATTERN" value="country.customer.project.tests.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
     <option name="SUITE_NAME" value="" />
-    <option name="PACKAGE_NAME" value="be.refleqt.projectname.tests" />
-    <option name="MAIN_CLASS_NAME" value="be.refleqt.projectname.tests.SingleExecutor" />
+    <option name="PACKAGE_NAME" value="country.customer.project.tests" />
+    <option name="MAIN_CLASS_NAME" value="country.customer.project.tests.SingleExecutor" />
     <option name="GROUP_NAME" value="" />
     <option name="TEST_OBJECT" value="CLASS" />
     <option name="PARAMETERS" value="" />
