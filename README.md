@@ -1,6 +1,6 @@
 # README #
 
-###Only works with Java 1.8!
+###Works with Java 1.11!
 
 #Purpose of this project
 The purpose of this project is to provide a base that every employee can use when starting a

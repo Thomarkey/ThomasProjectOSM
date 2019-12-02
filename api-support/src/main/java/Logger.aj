@@ -1,102 +1,137 @@
-import be.refleqt.base.test.dto.ApiException;
-import be.refleqt.base.test.dto.Pair;
-import be.refleqt.logger.ScenarioManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.squareup.okhttp.Response;
-import org.apache.logging.log4j.LogManager;
-
+import country.customer.project.general.support.GenericScenarioManager;
+import country.customer.project.logger.JsonNodeHelper;
+import country.customer.project.test.dto.*;
 import java.io.File;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import static java.util.Collections.emptySet;
+import okhttp3.Response;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.logging.log4j.LogManager;
 
 public aspect Logger {
 
     private static org.apache.logging.log4j.Logger LOGGER;
     private static Gson GSON = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-    private static int responseCode;
-    private static String responseHeaders;
+    private static ThreadLocal<StringBuilder> responsePrint = new ThreadLocal<>();
+    private static final boolean isWip = StringUtils.containsIgnoreCase(System.getProperty("cucumberTag", "wip"), "wip");
 
-    pointcut buildCall() : execution(* be.refleqt.base.test.dto.ApiClient.buildCall(..));
+    //Color
+    private static final String RESET = "\033[0m";  // Text Reset
+    private static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
+    private static final String CYAN_BOLD = "\033[1;36m";   // CYAN
+
+    pointcut buildCall() : execution(* be..dto.ApiClient.buildCall(..)) || execution(* com..dto.ApiClient.buildCall(..))
+            || execution(* eu..dto.ApiClient.buildCall(..)) || execution(* country..dto.ApiClient.buildCall(..));
 
     static {
-       LOGGER = LogManager.getLogger(Logger.class);
+        LOGGER = LogManager.getLogger(Logger.class);
     }
 
     before() : buildCall() {
         Object[] args = thisJoinPoint.getArgs();
-        String path = (String) args[0];
-        String method = (String) args[1];
+        ApiClient apiClient = (ApiClient) thisJoinPoint.getThis();
         List<Pair> queryParams = (List<Pair>) args[2];
         List<Pair> collectionQueryParams = (List<Pair>) args[3];
-        Object body = args[4];
         Map<String, String> headerParams = (Map<String, String>) args[5];
 
-        String queryParamString = "";
-        String collectionQueryParamString = "";
-        String headerString = "";
-
-        Set<String> headers = (headerParams == null)? emptySet() : headerParams.keySet();
-        for(String header : headers) {
-            headerString = headerString + "\n\t" + header + " : " + headerParams.get(header);
-        }
-        for(Pair queryParam : queryParams) {
-            queryParamString = queryParamString + "\n\t" + queryParam.getName() + " : " + queryParam.getValue();
-        }
-        for(Pair collectionQueryParam : collectionQueryParams) {
-            collectionQueryParamString = collectionQueryParamString + "\n\t" + collectionQueryParam.getName() + " : " + collectionQueryParam.getValue();
+        try {
+            headerParams.putAll((Map<String, String>) FieldUtils.readField(apiClient, "defaultHeaderMap", true));
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
 
-        if (ScenarioManager.getInstance().getScenario() != null) {
-            ScenarioManager.getInstance().getScenario().write("<<< REQUEST >>>" +
-                    "\nMETHOD: " + method +
-                    "\nPATH: " + path +
-                    "\nHEADERS: " + headerString +
-                    "\nQUERY PARAMS: " + queryParamString +
-                    "\nCOLLECTION QUERY PARAMS: " + collectionQueryParamString +
-                    "\nBODY: \n" + GSON.toJson(body));
+        StringBuilder request = new StringBuilder();
+
+        if (isWip) {
+            request.append(YELLOW_BOLD).append("\n<<< REQUEST >>>").append(RESET);
+        } else {
+            request.append("\n<<< REQUEST >>>");
+        }
+
+        request.append("\nMETHOD: ").append((String) args[1])
+                .append("\nPATH: ").append(apiClient.getBasePath()).append((String) args[0])
+                .append("\nTIME: ").append(OffsetDateTime.now());
+
+        if (headerParams.size() > 0) {
+            request.append("\nHEADERS: ");
+
+            headerParams.keySet().forEach(
+                    h -> request.append("\n\t").append(h).append(" : ").append(headerParams.get(h))
+            );
+        }
+
+        if (queryParams.size() > 0) {
+            request.append("\nQUERY PARAMS: ");
+            for (Pair queryParam : queryParams) {
+                request.append("\n\t").append(queryParam.getName()).append(" : ").append(queryParam.getValue());
+            }
+        }
+
+        if (collectionQueryParams.size() > 0) {
+            request.append("\nCOLLECTION QUERY PARAMS: ");
+            for (Pair collectionQueryParam : collectionQueryParams) {
+                request.append("\n\t").append(collectionQueryParam.getName()).append(" : ").append(
+                        collectionQueryParam.getValue());
+            }
+        }
+        request.append("\nBODY: \n").append(GSON.toJson(args[4])).append("\n");
+
+        if (GenericScenarioManager.getScenario() != null) {
+            GenericScenarioManager.writeLine(request.toString());
         }
     }
 
-    pointcut handleResponse() : execution(* be.refleqt.base.test.dto.ApiClient.handleResponse(..));
+    pointcut handleResponse() : execution(* be..dto.ApiClient.handleResponse(..))
+            || execution(* com..dto.ApiClient.handleResponse(..)) || execution(* eu..dto.ApiClient.handleResponse(..))
+            || execution(* country..dto.ApiClient.handleResponse(..));
 
     before() : handleResponse() {
         Object[] args = thisJoinPoint.getArgs();
+        responsePrint.set(new StringBuilder());
         Response response = (Response) args[0];
 
-        responseCode = response.code();
-        responseHeaders = "";
+        if (isWip) {
+            responsePrint.get().append(CYAN_BOLD).append("\n<<< RESPONSE >>>").append(RESET);
+        } else {
+            responsePrint.get().append("\n<<< RESPONSE >>>");
+        }
 
-        for(String header : response.headers().names()) {
-            responseHeaders = responseHeaders + "\n\t" + header + " : " + response.headers().values(header);
+        responsePrint.get().append("\nCODE: ").append(response.code());
+
+        if (response.headers().size() > 0) {
+            responsePrint.get().append("\nHEADERS: ");
+            for (String header : response.headers().names()) {
+                responsePrint.get().append("\n\t").append(header).append(" : ").append(response.headers().values(header));
+            }
         }
     }
 
     after() returning(Object o) : handleResponse() {
-        if(o instanceof byte[]) {
-        } else if(o instanceof File) {
+        if (o instanceof byte[]) {
+        } else if (o instanceof File) {
         } else {
-            if (ScenarioManager.getInstance().getScenario() != null) {
-                ScenarioManager.getInstance().getScenario().write("<<< RESPONSE >>>" +
-                        "\nCODE: " + responseCode +
-                        "\nHEADERS: " + responseHeaders +
-                        "\nRESPONSE BODY: \n" + GSON.toJson(o));
+            responsePrint.get().append("\nRESPONSE BODY: \n").append(GSON.toJson(o)).append("\n");
+
+            if (GenericScenarioManager.getScenario() != null) {
+                GenericScenarioManager.writeLine(responsePrint.get().toString());
             }
         }
     }
 
     after() throwing(Exception e) : handleResponse() {
-        if(e instanceof ApiException) {
+        if (e instanceof ApiException) {
             ApiException apiException = (ApiException) e;
 
-            if (ScenarioManager.getInstance().getScenario() != null) {
-                ScenarioManager.getInstance().getScenario().write("<<< RESPONSE >>>" +
-                        "\nRESPONSE CODE: " + responseCode +
-                        "\nHEADERS: " + responseHeaders +
-                        "\nRESPONSE BODY: \n" + GSON.toJson(apiException.getResponseBody()));
+            responsePrint.get().append("\nRESPONSE BODY: \n")
+                    .append((JsonNodeHelper.readJsonToPrettyString(apiException.getResponseBody())))
+                    .append("\n");
+
+            if (GenericScenarioManager.getScenario() != null) {
+                GenericScenarioManager.writeLine(responsePrint.get().toString());
             }
         }
     }

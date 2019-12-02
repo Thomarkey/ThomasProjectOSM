@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>refleqt-test</artifactId>
-        <groupId>be.refleqt.test</groupId>
+        <artifactId>refleqt-base</artifactId>
+        <groupId>country.customer.project</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -14,12 +14,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>be.refleqt.library</groupId>
-            <artifactId>RefleqtAppium</artifactId>
-            <version>${refleqt.appium.version}</version>
+            <groupId>country.customer.project</groupId>
+            <artifactId>app-support</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
 
     <profiles>
         <profile>
@@ -42,7 +41,6 @@
                                 </goals>
                                 <configuration>
                                     <!-- TODO Fill with your download location -->
-
                                     <serverId>refleqt</serverId>
                                     <url>http://df.refleqt.be:8081/artifactory/apps/demo/</url>
                                     <fromFile>app.apk</fromFile>
@@ -59,7 +57,6 @@
                                 </goals>
                                 <configuration>
                                     <!-- TODO Fill with your download location -->
-
                                     <serverId>refleqt</serverId>
                                     <url>http://df.refleqt.be:8081/artifactory/apps/demo/</url>
                                     <fromFile>AYS.ipa</fromFile>
@@ -73,7 +70,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.0</version>
+                        <version>${maven.surefire.version}</version>
                         <configuration>
                             <testFailureIgnore>true</testFailureIgnore>
                             <skipTests>false</skipTests>
@@ -87,7 +84,7 @@
                     <plugin>
                         <groupId>net.masterthought</groupId>
                         <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>4.8.0</version>
+                        <version>${maven.cucumber.reporting.version}</version>
                         <executions>
                             <execution>
                                 <id>execution</id>
