@@ -27,6 +27,14 @@
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 
+.idea/*.xml
+.idea/codeStyles
+.idea/inspectionProfiles
+
+.idea/*
+
+!.idea/runConfigurations
+
 ## File-based project format:
 *.iws
 
@@ -34,7 +42,6 @@
 
 # IntelliJ
 /out/
-.idea/
 
 
 # mpeltonen/sbt-idea plugin
