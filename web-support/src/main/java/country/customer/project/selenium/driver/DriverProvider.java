@@ -22,7 +22,7 @@ public class DriverProvider {
 
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static ThreadLocal<EventFiringWebDriver> eventHandlerDriver = new ThreadLocal<>();
-    private static EnvironmentType environmentType = EnvironmentType.fromString(System.getProperty("env", "local"));
+    private static EnvironmentType environmentType = EnvironmentType.fromString(System.getProperty("executionMode", "local"));
     private static List<HashMap<String, String>> browserSetup = new ArrayList<>();
 
     public static void setBrowser(String browser) {

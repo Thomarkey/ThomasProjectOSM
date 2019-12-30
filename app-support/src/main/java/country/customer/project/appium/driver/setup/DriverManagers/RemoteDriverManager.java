@@ -31,7 +31,7 @@ public class RemoteDriverManager extends DriverManager {
 
     @Override
     public void createWebDriver(DesiredCapabilities desiredCapabilities) {
-        String environment = EnvironmentType.fromString(desiredCapabilities.getCapability("env")).toString();
+        String environment = EnvironmentType.fromString(desiredCapabilities.getCapability("executionMode")).toString();
 
         String url = String.format(
                 EnvironmentPropertiesLoader.getInstance(desiredCapabilities).getProperty(environment + "_url"),
@@ -78,7 +78,7 @@ public class RemoteDriverManager extends DriverManager {
             throw new RuntimeException("Nothing found to upload! The cloud provider needs the app to install!");
         }
 
-        switch (EnvironmentType.fromString(desiredCapabilities.getCapability("env"))) {
+        switch (EnvironmentType.fromString(desiredCapabilities.getCapability("executionMode"))) {
             case BROWSERSTACK:
                 synchronized (RemoteDriverManager.class) {
                     if (isAndroid) {

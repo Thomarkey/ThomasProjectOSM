@@ -10,7 +10,7 @@ public class DriverManagerFactory {
 
     public static AppiumDriver getDriver(DesiredCapabilities desiredCapabilities) {
         DriverManager driverManager = null;
-        EnvironmentType environment = EnvironmentType.fromString(desiredCapabilities.getCapability("env"));
+        EnvironmentType environment = EnvironmentType.fromString(desiredCapabilities.getCapability("executionMode"));
 
         switch (environment) {
             case DOCKER:

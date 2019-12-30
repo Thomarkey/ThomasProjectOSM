@@ -20,7 +20,7 @@ import org.testng.annotations.BeforeSuite;
 public class SingleExecutor extends AbstractTestNGCucumberTests {
 
     /**
-     * Docker is only setup if System property "env" is a docker option
+     * Docker is only setup if System property "executionMode" is a docker option
      */
     @BeforeSuite
     public static void setupDocker() {

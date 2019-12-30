@@ -12,7 +12,7 @@
     <option name="MAIN_CLASS_NAME" value="country.customer.project.tests.SingleExecutor" />
     <option name="GROUP_NAME" value="" />
     <option name="TEST_OBJECT" value="CLASS" />
-    <option name="VM_PARAMETERS" value="-ea -Denv=docker -Dbrowser=ff" />
+    <option name="VM_PARAMETERS" value="-ea -DexecutionMode=docker -Dbrowser=ff" />
     <option name="PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
     <option name="OUTPUT_DIRECTORY" value="" />

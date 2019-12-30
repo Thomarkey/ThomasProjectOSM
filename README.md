@@ -89,8 +89,8 @@ your test suite.
 
 
 ##Environment
-##### Property to set "env".
-e.g. `-Denv=local` --> default value is **local**
+##### Property to set "executionMode".
+e.g. `-DexecutionMode=local` --> default value is **local**
 
 ###### Options
 
@@ -103,14 +103,14 @@ e.g. `-Denv=local` --> default value is **local**
  * saucelabs
     * Start a remote webDriver that connects to SauceLabs
  
-###### With env = browserstrack/saucelabs required parameters:
+###### With executionMode = browserstrack/saucelabs required parameters:
 
   * `-Dusername= `
     * This username can be found on the website of the cloud provider
   * `-DaccessKey= ` 
       * This access key or API key can be found on the website of the cloud provider
       
-###### With env = browserstrack/saucelabs optional parameters:
+###### With executionMode = browserstrack/saucelabs optional parameters:
 
   * `-Durl= `
     * If you'd like to overwrite the remote webdriver url
@@ -141,8 +141,8 @@ e.g. `-DtakeScreenshots=true`
    
 -> Default value:
         
-* False if `env` is set to browserstack/saucelabs
-* True if `env` is set to local/docker
+* False if `executionMode` is set to browserstack/saucelabs
+* True if `executionMode` is set to local/docker
 
 ###### Options
 * True
@@ -195,7 +195,7 @@ Run the profile by executing `mvn clean verify -PappTestSuite -Dprop...` in your
     * Give a list of comma separated devices.
     * The list of devices will be fed to `create_xml.py` in /scripts
     * This script will generate a new `testSuite.xml` with those devices
-* Provide ENV specific properties here as well! (See next topics)
+* Provide executionMode specific properties here as well! (See next topics)
 
 #### SauceLabs setup
 You'll need a sauce labs account with at least one active appium project. Use these credentials.

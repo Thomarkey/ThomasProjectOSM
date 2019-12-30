@@ -390,7 +390,7 @@ public class DockerProvider {
     }
 
     private boolean isDocker() {
-        return (EnvironmentType.fromString(System.getProperty("env", "local")).equals(EnvironmentType.DOCKER));
+        return (EnvironmentType.fromString(System.getProperty("executionMode", "local")).equals(EnvironmentType.DOCKER));
     }
 
     /**

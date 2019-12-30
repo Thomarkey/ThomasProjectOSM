@@ -24,7 +24,7 @@ public class EnvironmentPropertiesLoader {
                 properties.load(new ClassPathResource(
                         "environments" +
                                 File.separator +
-                                EnvironmentType.fromString(System.getProperty("env", "local")).toString() +
+                                EnvironmentType.fromString(System.getProperty("executionMode", "local")).toString() +
                                 ".properties"
                 ).getInputStream());
 
@@ -37,7 +37,7 @@ public class EnvironmentPropertiesLoader {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                Assert.fail("Failed to load properties for " + System.getProperty("env"));
+                Assert.fail("Failed to load properties for " + System.getProperty("executionMode"));
             }
         }
     }
