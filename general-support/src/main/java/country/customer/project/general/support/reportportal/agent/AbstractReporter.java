@@ -18,23 +18,14 @@ package country.customer.project.general.support.reportportal.agent;
 import com.epam.reportportal.listeners.ListenerParameters;
 import com.epam.reportportal.service.Launch;
 import com.epam.reportportal.service.ReportPortal;
-import com.epam.reportportal.utils.properties.PropertiesLoader;
 import com.epam.ta.reportportal.ws.model.FinishExecutionRQ;
 import com.epam.ta.reportportal.ws.model.StartTestItemRQ;
+import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
 import com.epam.ta.reportportal.ws.model.launch.StartLaunchRQ;
 import com.epam.ta.reportportal.ws.model.log.SaveLogRQ;
 import cucumber.api.*;
 import cucumber.api.event.*;
-import gherkin.deps.com.google.gson.Gson;
-import gherkin.deps.com.google.gson.JsonObject;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.JsonNode;
-import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
 import io.reactivex.Maybe;
-import static io.restassured.RestAssured.given;
-import io.restassured.http.ContentType;
-import io.restassured.http.Header;
-import io.restassured.response.Response;
-import java.io.IOException;
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -69,6 +60,16 @@ public abstract class AbstractReporter implements ConcurrentEventListener {
     private Map<String, Date> featureEndTime = Collections.synchronizedMap(new HashMap<String, Date>());
 
     protected boolean enabled = Boolean.parseBoolean(System.getProperty("rp.enabled", "false"));
+
+    private static ThreadLocal<String> browserTag = new ThreadLocal<>();
+
+    public static String getBrowserTag() {
+        return browserTag.get();
+    }
+
+    private void setBrowserTag(String browserTag) {
+        AbstractReporter.browserTag.set(browserTag);
+    }
 
     /**
      * Registers an event handler for a specific event.
@@ -150,7 +151,7 @@ public abstract class AbstractReporter implements ConcurrentEventListener {
                 .entrySet()) {
             if (scenarioContext.getValue().getLine() == currentScenarioContext.getLine()) {
                 currentScenarioContextMap.remove(scenarioContext.getKey());
-                Date endTime = Utils.finishTestItem(launch.get(), currentScenarioContext.getId(),
+                Date endTime = Utils.finishTestItem(launch.get(), currentScenarioContext,
                         event.result.getStatus().toString());
                 String featureURI = scenarioContext.getKey().getValue();
                 featureEndTime.put(featureURI, endTime);
@@ -190,7 +191,7 @@ public abstract class AbstractReporter implements ConcurrentEventListener {
                 rq.setName(parameters.getLaunchName());
                 rq.setStartTime(startTime);
                 rq.setMode(parameters.getLaunchRunningMode());
-                rq.setTags(parameters.getTags());
+                rq.setAttributes(parameters.getAttributes());
                 rq.setDescription(parameters.getDescription());
 
                 return reportPortal.newLaunch(rq);
@@ -273,50 +274,9 @@ public abstract class AbstractReporter implements ConcurrentEventListener {
 
     private void write(String text) {
         if (StringUtils.containsIgnoreCase(text, "modifyTag")) {
-            updateTag(text.replace("modifyTag:", ""));
+            setBrowserTag(text.replace("modifyTag:", ""));
         } else {
             Utils.sendLog(text, "UNKNOWN", null);
-        }
-    }
-
-    private void updateTag(String tag) {
-        JsonObject jsonElement = new JsonObject();
-
-        List<String> tags = new ArrayList<>(getCurrentScenarioContext().getTags());
-        tags.add(tag);
-
-        jsonElement.addProperty("description", getCurrentScenarioContext().getDescription());
-        jsonElement.addProperty("tags", new Gson().toJson(tags));
-
-        String basePath = PropertiesLoader.load().getProperties().get("rp.endpoint").toString();
-
-        Response response = given()
-                .contentType("multipart/form-data")
-                .header(new Header("Authorization", "Basic dWk6dWltYW4="))
-                .header(new Header("Accept-Language", "nl"))
-                .multiPart("username", System.getProperty("rp.username"))
-                .multiPart("password", System.getProperty("rp.password"))
-                .multiPart("grant_type", "password")
-                .request("POST", basePath + "/uat/sso/oauth/token");
-        try {
-
-            JsonNode responseBody = new ObjectMapper().readTree(response.getBody().asString());
-
-            String accessToken = responseBody.get("access_token").asText();
-
-            given()
-                    .relaxedHTTPSValidation()
-                    .header(new Header("Authorization", "bearer " + accessToken))
-                    .body(jsonElement.toString()
-                            .replace("\\", "")
-                            .replace("\"[", "[")
-                            .replace("]\"", "]"))
-                    .contentType(ContentType.JSON)
-                    .put(basePath + "/api/v1/test_project/item/" +
-                            getCurrentScenarioContext().getId().blockingGet() +
-                            "/update");
-        } catch (IOException e) {
-            //If this is thrown it means there is no API response.
         }
     }
 
@@ -460,7 +420,17 @@ public abstract class AbstractReporter implements ConcurrentEventListener {
         Maybe<String> root = getRootItemId();
         rq.setDescription(currentFeatureContext.getFeature().getDescription());
         rq.setName(Utils.buildNodeName(featureKeyword, AbstractReporter.COLON_INFIX, featureName, null));
-        rq.setTags(currentFeatureContext.getTags());
+
+        //Setting tags
+        Set<ItemAttributesRQ> attributesRQS = new HashSet<>();
+
+        if (currentFeatureContext.getTags() != null) {
+            currentFeatureContext.getTags().forEach(
+                    tag -> attributesRQS.add(new ItemAttributesRQ(tag))
+            );
+        }
+
+        rq.setAttributes(attributesRQS);
         rq.setStartTime(Calendar.getInstance().getTime());
         rq.setType(getFeatureTestItemType());
         currentFeatureContext.setFeatureId(root == null ?

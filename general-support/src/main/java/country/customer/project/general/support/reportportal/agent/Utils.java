@@ -20,6 +20,7 @@ import com.epam.reportportal.service.Launch;
 import com.epam.reportportal.service.ReportPortal;
 import com.epam.ta.reportportal.ws.model.FinishTestItemRQ;
 import com.epam.ta.reportportal.ws.model.StartTestItemRQ;
+import com.epam.ta.reportportal.ws.model.attribute.ItemAttributesRQ;
 import com.epam.ta.reportportal.ws.model.log.SaveLogRQ;
 import com.epam.ta.reportportal.ws.model.log.SaveLogRQ.File;
 import cucumber.api.*;
@@ -57,19 +58,30 @@ public class Utils {
         rp.finishTestItem(itemId, rq);
     }
 
-    static void finishTestItem(Launch rp, Maybe<String> itemId) {
-        finishTestItem(rp, itemId, null);
-    }
-
-    static Date finishTestItem(Launch rp, Maybe<String> itemId, String status) {
-        if (itemId == null) {
+    static Date finishTestItem(Launch rp, RunningContext.ScenarioContext scenarioContext, String status) {
+        if (scenarioContext.getId() == null) {
             return null;
         }
         FinishTestItemRQ rq = new FinishTestItemRQ();
         Date endTime = Calendar.getInstance().getTime();
         rq.setEndTime(endTime);
         rq.setStatus(status);
-        rp.finishTestItem(itemId, rq);
+
+        Set<ItemAttributesRQ> attributesRQS = new HashSet<>();
+
+        if (scenarioContext.getTags() != null) {
+            scenarioContext.getTags().forEach(
+                    tag -> attributesRQS.add(new ItemAttributesRQ(tag))
+            );
+        }
+
+        if (AbstractReporter.getBrowserTag() != null) {
+            attributesRQS.add(new ItemAttributesRQ(AbstractReporter.getBrowserTag()));
+        }
+
+        rq.setAttributes(attributesRQS);
+
+        rp.finishTestItem(scenarioContext.getId(), rq);
         return endTime;
     }
 
@@ -78,7 +90,14 @@ public class Utils {
         StartTestItemRQ rq = new StartTestItemRQ();
         rq.setDescription(description);
         rq.setName(name);
-        rq.setTags(tags);
+        //Setting tags
+        Set<ItemAttributesRQ> attributesRQS = new HashSet<>();
+
+        tags.forEach(
+                tag -> attributesRQS.add(new ItemAttributesRQ(tag))
+        );
+
+        rq.setAttributes(attributesRQS);
         rq.setStartTime(Calendar.getInstance().getTime());
         rq.setType(type);
         return rp.startTestItem(rootItemId, rq);
@@ -90,7 +109,7 @@ public class Utils {
             public SaveLogRQ apply(String item) {
                 SaveLogRQ rq = new SaveLogRQ();
                 rq.setMessage(message);
-                rq.setTestItemId(item);
+                rq.setItemUuid(item);
                 rq.setLevel(level);
                 rq.setLogTime(Calendar.getInstance().getTime());
                 if (file != null) {

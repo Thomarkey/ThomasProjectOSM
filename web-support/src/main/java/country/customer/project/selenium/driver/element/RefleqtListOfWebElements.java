@@ -3,13 +3,13 @@ package country.customer.project.selenium.driver.element;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import net.jodah.failsafe.Failsafe;
 import org.apache.commons.lang.StringUtils;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 import static org.hamcrest.Matchers.greaterThan;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.pagefactory.ElementLocator;
 
 public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
 
@@ -18,7 +18,6 @@ public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
      *****************/
     private final List<WebElement> webElements;
     private final WebDriver driver;
-    private final ElementLocator locator;
 
     /****************
      Constructor + Setter
@@ -26,24 +25,29 @@ public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
     private RefleqtListOfWebElements() {
         webElements = new ArrayList<>();
         driver = null;
-        locator = null;
     }
 
-    public RefleqtListOfWebElements(List<WebElement> webElements, WebDriver driver, ElementLocator locator) {
+    public RefleqtListOfWebElements(List<WebElement> webElements, WebDriver driver) {
         this.webElements = webElements;
         this.driver = driver;
-        this.locator = locator;
     }
 
     /****************
      Getters
      *****************/
+    public List<RefleqtWebElement> getList() {
+        List<RefleqtWebElement> elements = new ArrayList<>();
+
+        webElements.forEach(element -> elements.add(new RefleqtWebElement(element, driver)));
+
+        return elements;
+    }
+
     public RefleqtWebElement get(int index) {
-        waitForElementsToBeVisible();
+        waitForElementsToBeVisible(index);
         return new RefleqtWebElement(
                 webElements.get(index),
-                driver,
-                locator
+                driver
         );
     }
 
@@ -60,24 +64,33 @@ public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
         return new RefleqtWebElement(
                 webElements
                         .stream()
-                        .filter(e -> new RefleqtWebElement(e, driver, locator).isPresent())
+                        .filter(e -> new RefleqtWebElement(e, driver).isPresent())
                         .findFirst()
                         .orElseThrow(() -> new NoSuchElementException("None of the list are displayed!")),
-                driver,
-                locator
+                driver
+        );
+    }
+
+    public RefleqtListOfWebElements getDisplayedList() {
+        waitForElementsToBeVisible();
+        return new RefleqtListOfWebElements(
+                webElements
+                        .stream()
+                        .filter(e -> new RefleqtWebElement(e, driver).isPresent())
+                        .collect(Collectors.toList()),
+                driver
         );
     }
 
     public RefleqtWebElement getWithAttributeContaining(String attribute, String value) {
         waitForElementsToBeVisible();
         return new RefleqtWebElement(
-                locator.findElements()
+                getList()
                         .stream()
                         .filter(e -> StringUtils.containsIgnoreCase(e.getAttribute(attribute), value))
                         .findFirst()
                         .orElseThrow(() -> new NoSuchElementException("None of the list contain this term!")),
-                driver,
-                locator
+                driver
         );
     }
 
@@ -89,8 +102,7 @@ public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
                         .filter(e -> StringUtils.containsIgnoreCase(e.getText(), termToContain))
                         .findFirst()
                         .orElseThrow(() -> new NoSuchElementException("None of the list contain this term!")),
-                driver,
-                locator
+                driver
         );
     }
 
@@ -107,7 +119,7 @@ public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
     public Integer getIndexOfAttributeContainingTerm(String attribute, String termToContain) {
         waitForElementsToBeVisible();
 
-        List<WebElement> localList = locator.findElements();
+        List<RefleqtWebElement> localList = getList();
 
         for (int i = 0; i < localList.size(); i++) {
             if (StringUtils.containsIgnoreCase(localList.get(i).getAttribute(attribute), termToContain)) {
@@ -135,7 +147,8 @@ public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
                     .stream()
                     .filter(element -> StringUtils.containsIgnoreCase(element.getText(), termToContain))
                     .findFirst()
-                    .orElseThrow(() -> new NoSuchElementException("The given webElements of elements does not contain the request filter!"))
+                    .orElseThrow(() -> new NoSuchElementException(
+                            "The given webElements of elements does not contain the request filter!"))
                     .click();
             waitForAngularLoad();
         });
@@ -175,25 +188,25 @@ public class RefleqtListOfWebElements extends RefleqtElementConfiguration {
      *****************/
     public void validateAnyToContain(String toContain) {
         waitForElementsToBeVisible();
-        assertThat(webElements
+        assertThat(getList()
                 .stream()
-                .anyMatch(element -> StringUtils.containsIgnoreCase(element.getText(), toContain))
+                .anyMatch(element -> StringUtils.containsIgnoreCase(element.getAttribute("innerText"), toContain))
         ).isTrue();
     }
 
     public void validateAllToContain(String toContain) {
         waitForElementsToBeVisible();
-        assertThat(webElements
+        assertThat(getList()
                 .stream()
-                .allMatch(element -> StringUtils.containsIgnoreCase(element.getText(), toContain))
+                .allMatch(element -> StringUtils.containsIgnoreCase(element.getAttribute("innerText"), toContain))
         ).isTrue();
     }
 
     public void validateNoneToContain(String toContain) {
         waitForElementsToBeVisible();
-        assertThat(webElements
+        assertThat(getList()
                 .stream()
-                .noneMatch(element -> StringUtils.containsIgnoreCase(element.getText(), toContain))
+                .noneMatch(element -> StringUtils.containsIgnoreCase(element.getAttribute("innerText"), toContain))
         ).isTrue();
     }
 }

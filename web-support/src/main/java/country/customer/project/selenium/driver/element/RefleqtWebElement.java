@@ -9,26 +9,23 @@ import org.apache.commons.lang.StringUtils;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.pagefactory.ElementLocator;
+import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.support.ui.Select;
 
-public class RefleqtWebElement extends RefleqtElementConfiguration implements WebElement {
+public class RefleqtWebElement extends RefleqtElementConfiguration implements WebElement, Locatable, WrapsElement {
 
     /****************
      Global Variables
      *****************/
     private final WebElement element;
     private final WebDriver driver;
-    private final ElementLocator locator;
 
     /****************
      Constructor
      *****************/
-    public RefleqtWebElement(final WebElement element, final WebDriver driver, ElementLocator locator) {
+    public RefleqtWebElement(final WebElement element, final WebDriver driver) {
         this.element = element;
         this.driver = driver;
-        this.locator = locator;
     }
 
     /****************
@@ -256,7 +253,7 @@ public class RefleqtWebElement extends RefleqtElementConfiguration implements We
     }
 
     public WebElement getWebElement() {
-        return locator.findElement();
+        return getWrappedElement();
     }
 
     public Boolean isPresent() {
@@ -385,48 +382,51 @@ public class RefleqtWebElement extends RefleqtElementConfiguration implements We
                 .until(() -> StringUtils.containsIgnoreCase(element.getText(), termToContain));
     }
 
+    public void waitForElementToHaveAttribute(String attribute, String value) {
+        await().atMost(longTimeOut, TimeUnit.SECONDS)
+                .ignoreExceptions()
+                .until(() -> StringUtils.containsIgnoreCase(getWebElement().getAttribute(attribute), value));
+    }
+
     /****************
      Helper Methods
      *****************/
+    boolean isPresent = false;
+
     private Boolean checkFrames() {
-        if (!isPresent()) {
-            List<WebElement> frames = getFrames();
-            if (frames.size() > 0) {
-                //While is needed since other frames become stale so you can't foreach them.
-                for (int i = 0; i < frames.size(); frames = this.getFrames(), i++) {
-                    if (isPresent()) {
-                        return true;
-                    }
+        if (isPresent()) {
+            return true;
+        }
+
+        getFrames().forEach(
+                f -> {
+                    if (isPresent) { return; }
 
                     try {
-                        driver.switchTo().frame(frames.get(i));
+                        driver.switchTo().frame(f);
                     } catch (StaleElementReferenceException ignored) {
                     }
 
                     if (isPresent()) {
-                        return true;
+                        isPresent = true;
+                        return;
                     }
 
-                    List<WebElement> innerFrames = getFrames();
+                    isPresent = checkFrames();
 
-                    if (innerFrames.size() > 0) {
-                        try {
-                            driver.switchTo().frame(innerFrames.get(0));
-                        } catch (StaleElementReferenceException ignored) {
-                        }
-
-                        if (isPresent()) {
-                            return true;
-                        }
+                    if (!isPresent) {
+                        driver.switchTo().parentFrame();
                     }
-
-                    driver.switchTo().defaultContent();
                 }
+        );
+
+        if (!isPresent) {
+            if (!((String) ((JavascriptExecutor) driver).executeScript("return self.name")).isEmpty()) {
+                driver.switchTo().defaultContent();
             }
         }
-        //Making sure to return to the defaultContent if the element is not found in the frames.
-        driver.switchTo().defaultContent();
-        return isPresent();
+
+        return isPresent;
     }
 
     private List<WebElement> getFrames() {
@@ -444,6 +444,12 @@ public class RefleqtWebElement extends RefleqtElementConfiguration implements We
                     .stream()
                     .filter(f -> f.getAttribute("id") != null)
                     .filter(f -> !f.getAttribute("id").isEmpty())
+                    .collect(Collectors.toSet()));
+
+            filteredFrames.addAll(frames
+                    .stream()
+                    .filter(f -> f.getAttribute("src") != null)
+                    .filter(f -> !f.getAttribute("src").isEmpty())
                     .collect(Collectors.toSet()));
 
             frames.clear();
@@ -499,5 +505,15 @@ public class RefleqtWebElement extends RefleqtElementConfiguration implements We
     public void validateInViewPort(boolean isInPort) {
         waitForElementToBeLocatable();
         assertThat(isInViewport()).isEqualTo(isInPort);
+    }
+
+    @Override
+    public WebElement getWrappedElement() {
+        return ((WrapsElement) element).getWrappedElement();
+    }
+
+    @Override
+    public Coordinates getCoordinates() {
+        return ((Locatable) element).getCoordinates();
     }
 }

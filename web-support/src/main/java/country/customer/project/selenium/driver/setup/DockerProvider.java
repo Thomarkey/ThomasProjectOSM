@@ -16,7 +16,7 @@ import org.awaitility.Duration;
 
 public class DockerProvider {
 
-    private final String stableTag = "3.141.59";
+    private final String stableTag = "3.141.59-xenon";
     private CreateContainerResponse standaloneContainer;
     private List<CreateContainerResponse> chromeNodeContainer = new ArrayList<>();
     private List<CreateContainerResponse> firefoxNodeContainer = new ArrayList<>();
