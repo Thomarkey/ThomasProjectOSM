@@ -1,7 +1,7 @@
 package country.customer.project.pages;
 
 import country.customer.project.selenium.support.GenericAbstractPage;
-import country.customer.project.support.PropertiesReader;
+import country.customer.project.selenium.support.PropertiesReader;
 import country.customer.project.support.World;
 
 /**

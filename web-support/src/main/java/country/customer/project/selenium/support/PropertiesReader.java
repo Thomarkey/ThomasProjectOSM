@@ -1,4 +1,4 @@
-package country.customer.project.support;
+package country.customer.project.selenium.support;
 
 import java.io.InputStream;
 import java.util.Properties;
