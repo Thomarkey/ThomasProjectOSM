@@ -12,12 +12,12 @@ public class CustomEventDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterNavigateTo(String s, WebDriver webDriver) {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
     }
 
     @Override
     public void beforeNavigateBack(WebDriver webDriver) {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class CustomEventDriverListener implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateForward(WebDriver webDriver) {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class CustomEventDriverListener implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateRefresh(WebDriver webDriver) {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class CustomEventDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterClickOn(WebElement webElement, WebDriver webDriver) {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
     }
 
     @Override
@@ -72,7 +72,7 @@ public class CustomEventDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
     }
 
     @Override
@@ -127,7 +127,7 @@ public class CustomEventDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterGetText(WebElement webElement, WebDriver webDriver, String s) {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
     }
 
     @Override
@@ -137,6 +137,6 @@ public class CustomEventDriverListener implements WebDriverEventListener {
 
     @Override
     public void beforeSwitchToWindow(String s, WebDriver webDriver) {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
     }
 }

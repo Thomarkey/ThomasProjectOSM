@@ -1,15 +1,17 @@
 package country.customer.project.support;
 
+import org.apache.commons.lang3.StringUtils;
+
 import static country.customer.project.selenium.support.DataHelper.getInvalid;
 
 /**
- *  DataHelper that imports a Generic DataHelper.
- *  Also includes an example of how you could use it.
- *
- *  Generic DataHelper contains getInvalid
- *      -> <null> returns null
- *      -> <empty> returns ""
- *      -> Default returns the given value
+ * DataHelper that imports a Generic DataHelper.
+ * Also includes an example of how you could use it.
+ * <p>
+ * Generic DataHelper contains getInvalid
+ * -> <null> returns null
+ * -> <empty> returns ""
+ * -> Default returns the given value
  */
 public class DataHelper {
 
@@ -21,4 +23,10 @@ public class DataHelper {
                 return getInvalid(option);
         }
     }
+
+
+    public static String removeLastCharacter(String str) {
+        return StringUtils.substring(str, 0, str.length() - 1);
+    }
+
 }

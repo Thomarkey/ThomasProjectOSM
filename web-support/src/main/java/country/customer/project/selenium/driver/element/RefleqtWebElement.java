@@ -1,16 +1,23 @@
 package country.customer.project.selenium.driver.element;
 
 import country.customer.project.selenium.support.ScenarioManager;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 import net.jodah.failsafe.Failsafe;
 import org.apache.commons.lang.StringUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Coordinates;
+import org.openqa.selenium.interactions.Locatable;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.*;
-import org.openqa.selenium.support.ui.Select;
 
 public class RefleqtWebElement extends RefleqtElementConfiguration implements WebElement, Locatable, WrapsElement {
 
@@ -400,7 +407,9 @@ public class RefleqtWebElement extends RefleqtElementConfiguration implements We
 
         getFrames().forEach(
                 f -> {
-                    if (isPresent) { return; }
+                    if (isPresent) {
+                        return;
+                    }
 
                     try {
                         driver.switchTo().frame(f);
@@ -516,4 +525,33 @@ public class RefleqtWebElement extends RefleqtElementConfiguration implements We
     public Coordinates getCoordinates() {
         return ((Locatable) element).getCoordinates();
     }
+
+    private void ExecuteScriptHighlight(String highlightStyle) {
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].setAttribute(arguments[1], arguments[2])",
+                element,
+                "style",
+                highlightStyle);
+
+    }
+
+    public void highlightElement() {
+
+        String original_style = getWebElement().getAttribute("style");
+        ExecuteScriptHighlight("border: 2px solid red; border-style: dashed;");
+//        ScenarioManager.saveScreenshot();
+        ExecuteScriptHighlight(original_style);
+
+    }
+
+    public void clickCoordinates() {
+        waitForElementToBeVisible();
+        new Actions(driver)
+                .moveToElement(getWebElement(), 0, 0)
+                .click()
+                .perform();
+    }
+
+
 }

@@ -108,6 +108,13 @@
             <artifactId>cucumber-picocontainer</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
+
+        <!--CSV-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.9</version>
+        </dependency>
     </dependencies>
 
 
@@ -151,6 +158,12 @@
                         <groupId>org.apache.maven.shared</groupId>
                         <artifactId>maven-dependency-analyzer</artifactId>
                         <version>${maven.dependency.analyzer.version}</version>
+                    </dependency>
+                    <!--CSV-->
+                    <dependency>
+                        <groupId>org.apache.poi</groupId>
+                        <artifactId>poi</artifactId>
+                        <version>3.9</version>
                     </dependency>
                 </dependencies>
                 <executions>

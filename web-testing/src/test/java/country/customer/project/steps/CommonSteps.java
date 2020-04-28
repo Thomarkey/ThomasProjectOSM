@@ -1,5 +1,6 @@
 package country.customer.project.steps;
 
+import country.customer.project.pages.HighLightPage;
 import country.customer.project.pages.HomePage;
 import country.customer.project.selenium.driver.DriverProvider;
 import country.customer.project.selenium.support.ScenarioManager;
@@ -26,7 +27,7 @@ public class CommonSteps {
 
     @After
     public void afterScenario() {
-        ScenarioManager.saveScreenshot();
+//        ScenarioManager.saveScreenshot();
         DriverProvider.tearDownDriver();
     }
 
@@ -45,5 +46,10 @@ public class CommonSteps {
     @Then("The first result is {}")
     public void theFirstResult(String value) throws Throwable {
         new HomePage().getFirstSearchItem().validateFirstSearchItem(value);
+    }
+
+    @When("I highlight the siblings title")
+    public void iSelectTheLargeTile() throws InterruptedException {
+        new HighLightPage().clickTile();
     }
 }

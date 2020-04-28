@@ -9,11 +9,11 @@ import country.customer.project.support.World;
  */
 public abstract class AbstractPage extends GenericAbstractPage {
 
-    public static ThreadLocal<World> world = new ThreadLocal<>();
-
-    public static void setWorld(World world) {
-        AbstractPage.world.set(world);
-    }
+//    public static ThreadLocal<World> world = new ThreadLocal<>();
+//
+//    public static void setWorld(World world) {
+//        AbstractPage.world.set(world);
+//    }
 
     public AbstractPage() {
         super();

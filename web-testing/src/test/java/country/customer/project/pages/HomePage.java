@@ -1,6 +1,7 @@
 package country.customer.project.pages;
 
 import country.customer.project.selenium.driver.element.RefleqtWebElement;
+import country.customer.project.support.WorldHelper;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends AbstractPage {
@@ -30,7 +31,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage getFirstSearchItem() {
         firstSearchResultLbl.waitForElementToBeVisible();
-        world.get().result = firstSearchResultLbl.getText();
+        WorldHelper.getWorld().result = firstSearchResultLbl.getText();
         return this;
     }
 }

@@ -14,8 +14,7 @@ Feature: This is my feature
       | xplore   | Xplore Group \| Home \| Connect, create and make sense |
       | xti      | XTi: Welkom                                            |
 
-  @wip
-  Scenario: E-commerce demo
-    Given I go to http://automationpractice.com/index.php
-    When  I add the first bestseller item to my cart
-    Then  I successfully added something to my cart
+  Scenario: highlight demo
+    Given I go to http://the-internet.herokuapp.com/large
+    When I highlight the siblings title
+    Then I go to http://www.google.be
