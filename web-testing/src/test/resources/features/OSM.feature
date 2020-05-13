@@ -8,6 +8,8 @@ Feature: Crawling transferlist
     When I browse the transferlist
     Then I create a CSV from all the players in the transferlist
 
+
+
   @wip
   Scenario: Decide who to sell
     Given I go to http://www.onlinesoccermanager.nl
@@ -16,9 +18,3 @@ Feature: Crawling transferlist
     And I navigate to my selectie
     When I browse my team
     Then I sell the right people
-
-
-    Scenario: transfer
-      Given I go to https://www.onlinesoccermanager.nl/Squad
-      And I login with my credentials
-      When I browse my team

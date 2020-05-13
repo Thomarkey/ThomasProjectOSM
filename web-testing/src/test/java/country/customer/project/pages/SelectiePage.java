@@ -48,6 +48,9 @@ public class SelectiePage extends AbstractPage {
     @FindBy(css = "#modal-dialog-alert > div.row.row-h-xs-24.overflow-visible.modal-content-container")
     RefleqtWebElement popupTransfer;
 
+    @FindBy(css = "#modal-dialog-alert > div.row.row-h-xs-24.overflow-visible.modal-content-container > div > div > div > div.modal-header > h3")
+    RefleqtWebElement popupTransferOeps;
+
     public void getSelectieTable() throws InterruptedException {
         Thread.sleep(1000);
 
@@ -67,7 +70,7 @@ public class SelectiePage extends AbstractPage {
 
     public void addSelectedPlayersToTransferlist() throws InterruptedException {
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 1; i < 5; i++) {
             int minIndex = world.selectieListPrices.indexOf(Collections.min(world.selectieListPrices));
             playerTableRows.get(minIndex).scrollIntoCenter().clickWithJavaScript();
 
@@ -85,12 +88,18 @@ public class SelectiePage extends AbstractPage {
                         .perform();
                 bevestigSale.clickWithJavaScript();
                 world.selectieListPrices.set(minIndex, 200000000);
+                if (popupTransferOeps.isLocatable()) {
+                    i = i - 1;
+                } else {
+                    System.out.println("player op transferlist");
+                }
             } else {
                 i = i - 1;
                 world.selectieListPrices.set(minIndex, 200000000);
             }
         }
         System.out.println(world.minValuesList);
+        Thread.sleep(5000);
     }
 
 

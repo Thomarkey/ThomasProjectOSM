@@ -16,9 +16,6 @@ public class TransferListPage extends AbstractPage {
     World world = WorldHelper.getWorld();
 
 
-    //tabel selecteren en dan navigeren naar de elementen dager uit wilt halen
-    // voor elke table row
-    // me ne foreach
 
     @FindBy(css = "#transfer-list > div > table > tbody:nth-child(2)")
     RefleqtWebElement transferListTable;
@@ -97,7 +94,7 @@ public class TransferListPage extends AbstractPage {
 
             world.stringList.add(name  + ";" + age + ";" + value  + ";" + price);
         }
-        //+ "\n"
+
 
     }
 
