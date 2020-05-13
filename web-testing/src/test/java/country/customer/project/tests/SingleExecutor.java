@@ -10,10 +10,7 @@ import org.testng.annotations.BeforeSuite;
 @CucumberOptions(
         features = "src/test/resources/features/",
         glue = "country.customer.project.steps",
-        plugin = {
-                "progress", "json:target/cucumber/json/full.json", "html:target/cucumber/html/full/",
-                "country.customer.project.general.support.reportportal.agent.ScenarioReporter"
-        },
+        plugin = {"pretty", "json:target/cucumber/json/full.json", "html:target/cucumber/html/full/"},
         strict = true,
         snippets = SnippetType.CAMELCASE
 )
