@@ -124,7 +124,6 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <useIncrementalCompilation>false</useIncrementalCompilation>
-                    <release>11</release>
                 </configuration>
             </plugin>
             <plugin>
