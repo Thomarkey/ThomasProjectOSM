@@ -3,12 +3,16 @@ package country.customer.project.steps;
 import country.customer.project.pages.HighLightPage;
 import country.customer.project.pages.HomePage;
 import country.customer.project.selenium.driver.DriverProvider;
+import country.customer.project.selenium.driver.setup.DriverManagers.RemoteDriverManager;
 import country.customer.project.selenium.support.ScenarioManager;
 import country.customer.project.support.World;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.RemoteWebDriverBuilder;
 
 public class CommonSteps {
 
@@ -34,6 +38,7 @@ public class CommonSteps {
     @Given("I go to {}")
     public void iGoTo(String website) {
         DriverProvider.goToURL(website);
+
     }
 
     @When("I search for {}")

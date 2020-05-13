@@ -358,7 +358,9 @@ public class DockerProvider {
         nodeEnvs.add("SCREEN_WIDTH=1920");
         nodeEnvs.add("SCREEN_HEIGHT=1080");
         nodeEnvs.add("SCREEN_DEPTH=24");
-        nodeEnvs.add("HUB_HOST=selenium-hub");
+//        nodeEnvs.add("HUB_HOST=selenium-hub");
+        //TODO: deeshierboveisjuiste,eronderistest
+        nodeEnvs.add("HUB_HOST=selenium-ch");
         nodeEnvs.add("HUB_PORT=4444");
         return nodeEnvs;
     }
